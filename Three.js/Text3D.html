@@ -56,8 +56,6 @@ This three.js demo is part of a collection at
 var container, scene, camera, renderer, camControls, stats;
 var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
-// custom global variables
-var cube;
 
 init();
 animate();
@@ -113,16 +111,16 @@ function init()
 	////////////
 	// CUSTOM //
 	////////////
-	
+
 	// add 3D text
-	var materialFront = new THREE.MeshBasicMaterial( { color: 0x000333 } );
-	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000088 } );
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000c0f } );
 	var materialArray = [ materialFront, materialSide ];
 	var textGeom = new THREE.TextGeometry( "PERIODIC TABLE OF THE ELEMENTS",
 	{
-		size: 12, height: 4, curveSegments: 3,
+		size: 20, height: 4, curveSegments: 3,
 		font: "helvetiker", weight: "bold", style: "normal",
-		bevelThickness: 1, bevelSize: 1, bevelEnabled: false	,
+		bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
 		material: 0, extrudeMaterial: 1
 	});
 	// font: helvetiker, gentilis, droid sans, droid serif, optimer
@@ -136,6 +134,16 @@ function init()
 	
 	textMesh.position.set( -0.5 * textWidth, 300, -400 );
 	scene.add(textMesh);
+
+
+	// ADD CUBE
+	var geometry = new THREE.CubeGeometry( 20, 20, 14 );
+	var material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+	var mesh = new THREE.Mesh( geometry, material );
+	mesh.position.set(-190, 280, -400);
+
+	scene.add( mesh );
+
 
 	var axes = new THREE.AxisHelper(100);
 	scene.add( axes );
@@ -154,6 +162,8 @@ function init()
 	var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
 	scene.add( skyBox );
+
+
 }
 
 function animate()
