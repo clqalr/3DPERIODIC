@@ -136,21 +136,75 @@ function init()
 	scene.add(textMesh);
 
 
-	// ADD CUBE
-
+	// ADD CUBES
 	var mesh = [7];
-	for (var i = 0; i < 7; i++) {
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
+	mesh[0] = new THREE.Mesh(geometry, material);
+	mesh[0].position.set(-420, 300, -400);
+
+	scene.add(mesh[0]);
+
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0xff6666, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
+	for (var i = 1; i < 7; i++) {
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
-		var material = new THREE.MeshLambertMaterial();
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-420, 300 - i * 57, -400);
 
 		scene.add(mesh[i]);
 	}
+	
+		var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
 
-	mesh[0].material.color.setHex(0x0066ff);
-	mesh[1].material.color.setHex(0xff6666);
+	var material = new THREE.MeshFaceMaterial(materialArray);
 
+	mesh[0] = new THREE.Mesh(geometry, material);
+	mesh[0].position.set(-420 + 60, 300, -400);
+
+	scene.add(mesh[0]);
+
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0xff6666, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
+	for (var i = 1; i < 7; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 60, 300 - i * 57, -400);
+
+		scene.add(mesh[i]);
+	}
 
 	var axes = new THREE.AxisHelper(100);
 	scene.add( axes );
@@ -186,6 +240,15 @@ function update()
 	var delta = clock.getDelta();
 	camControls.update(delta);
 	stats.update();
+
+
+	console.log(camera.position.z);
+	if ((camera.position.x >= -420 - 450 && camera.position.x <= -400) && (camera.position.y <= 300 && camera.position.y >= 300 - 50) &&
+	     camera.position.z <= -400 && camera.position.z >= -450) {
+		camera.position.set.x = 0;
+		camera.position.set.y = 0;
+		cae
+	}
 }
 
 function render()
