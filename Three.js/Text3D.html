@@ -78,7 +78,7 @@ function init()
 	scene.add(camera);
 	camera.position.set(0,150,400);
 	camera.lookAt(scene.position);	
-	// RENDERER
+	// RENDERER1111111111111111111
 	if ( Detector.webgl )
 		renderer = new THREE.WebGLRenderer( {antialias:true} );
 	else
@@ -131,7 +131,7 @@ function init()
 	
 	textMesh.position.set( -0.5 * textWidth, 300, -400 );
 	scene.add(textMesh);
-
+/*
 
 	// ADD CUBES
 	var mesh = [7];
@@ -206,6 +206,671 @@ function init()
 		scene.add(mesh[i]);
 		collidableMeshList.push(mesh[i]);
 	}
+*/
+
+	/****************** column 0 *********************/
+	// ADD CUBES
+	var mesh = [7];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+
+	//blue material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/column00.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	mesh[0] = new THREE.Mesh(geometry, material);
+	mesh[0].position.set(-420, 300, -400);
+
+	scene.add(mesh[0]); //add on the screen
+	collidableMeshList.push(mesh[0]);
+
+
+	for (var i = 1; i < 7; i++) {
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xff6666, map: THREE.ImageUtils.loadTexture( 'images/column0'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
+		var material = new THREE.MeshFaceMaterial(materialArray);
+
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420, 300 - i * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 1 *********************/
+	//육면정보
+
+
+	for (var i = 1; i < 7; i++) {
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xe67817 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xe67817 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xe67817 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xe67817 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xe67817, map: THREE.ImageUtils.loadTexture( 'images/column1'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xe67817 }));
+		var material = new THREE.MeshFaceMaterial(materialArray);
+
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 60, 300 - i * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 2*********************/
+	// ADD CUBES
+	var mesh = [4];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+	for (var i = 0; i <= 1; i++) {
+		//yellow material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xF8FE00, map: THREE.ImageUtils.loadTexture( 'images/column2'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 120, 300 - (i+3) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	// light green material
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x63FF00, map: THREE.ImageUtils.loadTexture( 'images/column22.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
+	mesh[2] = new THREE.Mesh(geometry, material);
+	mesh[2].position.set(-420+120, 300 - 5*57, -400);
+
+	scene.add(mesh[2]); //add on the screen
+
+	// dark green material
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x02780A, map: THREE.ImageUtils.loadTexture( 'images/column23.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
+	mesh[3] = new THREE.Mesh(geometry, material);
+	mesh[3].position.set(-420+120, 300-6*57, -400);
+
+	scene.add(mesh[3]); //add on the screen
+
+	/****************** column 3 *********************/
+	// ADD CUBES
+	var mesh = [4];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+
+	for (var i = 0; i <= 3; i++) {
+
+		//yellow material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xF8FE00, map: THREE.ImageUtils.loadTexture( 'images/column3'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 180, 300 - (i+3) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 4 *********************/
+	// ADD CUBES
+	var mesh = [4];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+	for (var i = 0; i <= 3; i++) {
+		//yellow material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xF8FE00, map: THREE.ImageUtils.loadTexture( 'images/column4'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 240, 300 - (i+3) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 5 *********************/
+	// ADD CUBES
+	var mesh = [4];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+	for (var i = 0; i <= 3; i++) {
+		//yellow material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xF8FE00, map: THREE.ImageUtils.loadTexture( 'images/column5'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 300, 300 - (i+3) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 6 *********************/
+	// ADD CUBES
+	var mesh = [4];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+	for (var i = 0; i <= 3; i++) {
+		//yellow material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xF8FE00, map: THREE.ImageUtils.loadTexture( 'images/column6'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 360, 300 - (i+3) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 7 *********************/
+	// ADD CUBES
+	var mesh = [4];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+	for (var i = 0; i <= 3; i++) {
+		//yellow material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xF8FE00, map: THREE.ImageUtils.loadTexture( 'images/column7'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 420, 300 - (i+3) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+
+	/****************** column 8 *********************/
+	// ADD CUBES
+	var mesh = [4];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+
+
+	for (var i = 0; i <= 3; i++) {
+		//yellow material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xF8FE00, map: THREE.ImageUtils.loadTexture( 'images/column8'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 480, 300 - (i+3) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 9 *********************/
+	// ADD CUBES
+	var mesh = [4];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+
+
+	for (var i = 0; i <= 3; i++) {
+		//yellow material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xF8FE00, map: THREE.ImageUtils.loadTexture( 'images/column9'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 540, 300 - (i+3) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 10 *********************/
+	// ADD CUBES
+	var mesh = [4];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+
+
+	for (var i = 0; i <= 3; i++) {
+		//yellow material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xF8FE00, map: THREE.ImageUtils.loadTexture( 'images/column10'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 600, 300 - (i+3) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 11 *********************/
+	// ADD CUBES
+	var mesh = [4];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+	for (var i = 0; i <= 3; i++) {
+		//yellow material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xF8FE00, map: THREE.ImageUtils.loadTexture( 'images/column11'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xF8FE00 }));
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 660, 300 - (i+3) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 12 *********************/
+	// ADD CUBES
+	var mesh = [6];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+
+	//light blue material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x12C7FD, map: THREE.ImageUtils.loadTexture( 'images/column1201.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	mesh[0] = new THREE.Mesh(geometry, material);
+	mesh[0].position.set(-420+720, 300-57, -400);
+
+	scene.add(mesh[0]); //add on the screen
+
+	for (var i = 1; i < 6; i++) {
+		//green material (육면)
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0x00C30D, map: THREE.ImageUtils.loadTexture( 'images/column12'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray);
+
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420+720, 300 - (i+1) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 13 *********************/
+	// ADD CUBES
+	var mesh = [6];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+
+	//blue material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	mesh[0] = new THREE.Mesh(geometry, material);
+	mesh[0].position.set(-420+780, 300-57, -400);
+
+	scene.add(mesh[0]); //add on the screen
+
+
+	//light blue material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x12C7FD, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
+	for (var i = 1; i <= 2; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420+780, 300 - (i+1) * 57, -400);
+		scene.add(mesh[i]);
+	}
+
+	//green material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x00C30D, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
+	for (var i = 3; i <= 5; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420+780, 300 - (i+1) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 14 *********************/
+	// ADD CUBES
+	var mesh = [6];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+
+	//blue material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	for (var i = 0; i <= 1; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420+840, 300 - (i+1) * 57, -400);
+		scene.add(mesh[i]);
+	}
+	scene.add(mesh[0]); //add on the screen
+
+
+	//light blue material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x12C7FD, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
+	for (var i = 2; i <= 3; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420+840, 300 - (i+1) * 57, -400);
+		scene.add(mesh[i]);
+	}
+
+	//green material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x00C30D, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
+	for (var i = 4; i <= 5; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420+840, 300 - (i+1) * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** column 15 *********************/
+	// ADD CUBES
+	var mesh = [6];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+
+	//blue material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	for (var i = 0; i <= 2; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420+900, 300 - (i+1) * 57, -400);
+		scene.add(mesh[i]);
+	}
+
+
+
+	//light blue material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x12C7FD, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray);
+
+	for (var i = 3; i <= 4; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420+900, 300 - (i+1) * 57, -400);
+		scene.add(mesh[i]);
+	}
+
+	//green material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x00C30D, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	mesh[5] = new THREE.Mesh(geometry, material);
+	mesh[5].position.set(-420+900, 300-(6*57), -400);
+
+	scene.add(mesh[5]); //add on the screen
+
+	/****************** column 16 *********************/
+	// ADD CUBES
+	var mesh = [6];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+
+	//navy material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4454D0, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	for (var i = 0; i <= 5; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420+960, 300 - (i+1) * 57, -400);
+		scene.add(mesh[i]);
+	}
+	scene.add(mesh[0]); //add on the screen
+
+
+	/****************** column 17 *********************/
+	// ADD CUBES
+	var mesh = [7];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+
+	//blue material (육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0xE06EF6, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	for (var i = 0; i <= 6; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420 + 1020, 300 - (i) * 57, -400);
+		scene.add(mesh[i]);
+	}
+	//참고
+	for (var i = 1; i < 7; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-420, 300 - i * 57, -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** row 0 *********************/
+	// ADD CUBES
+	var mesh = [15];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+	//light green material
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x63FF00, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	for (var i = 0; i <= 14; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-300+(i*60), 300 -(8* 57), -400);
+
+		scene.add(mesh[i]);
+	}
+
+	/****************** row 1 *********************/
+	// ADD CUBES
+	var mesh = [15];
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+	//dark green material
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x02780A, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	for (var i = 0; i <= 14; i++) {
+		var geometry = new THREE.CubeGeometry(50, 50, 10);
+		mesh[i] = new THREE.Mesh(geometry, material);
+		mesh[i].position.set(-300+(i*60), 300 -(9* 57), -400);
+
+		scene.add(mesh[i]);
+	}
+
 
 	var axes = new THREE.AxisHelper(100);
 	scene.add( axes );
@@ -271,7 +936,7 @@ function init()
 	var material = new THREE.MeshBasicMaterial( { color: 0xffffff });
 	var MovingCubeGeom = new THREE.CubeGeometry( 10, 10, 10);
 	MovingCube = new THREE.Mesh( MovingCubeGeom, material );
-	MovingCube.position.set(0, 25.1, 0);
+	MovingCube.position.set(0, 25.1, 1000);
 	scene.add( MovingCube );
 
 	// EVENTS.
@@ -339,7 +1004,7 @@ function update()
 
 	if ( keyboard.pressed("Z") )
 	{
-		MovingCube.position.set(0,25.1,0);
+		MovingCube.position.set(0,25.1,1000);
 		MovingCube.rotation.set(0,0,0);
 	}
 
