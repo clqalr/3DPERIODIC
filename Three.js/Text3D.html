@@ -11,6 +11,7 @@
 <script src="js/Three.js"></script>
 <script src="js/Detector.js"></script>
 <script src="js/Stats.js"></script>
+
 <script src="js/OrbitControls.js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
 <script src="js/THREEx.FullScreen.js"></script>
@@ -53,9 +54,14 @@ This three.js demo is part of a collection at
 // MAIN
 
 // standard global variables
-var container, scene, camera, renderer, camControls, stats;
+var container, scene, camera, renderer, cameraControls, stats;
 var keyboard = new THREEx.KeyboardState();
 var clock = new THREE.Clock();
+var cube, lookAround = false;
+var collidableMeshList = [];
+var arrowList = [];
+var directionList = [];
+var shape3;
 
 init();
 animate();
@@ -67,7 +73,7 @@ function init()
 	scene = new THREE.Scene();
 	// CAMERA
 	var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
-	var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
+	var VIEW_ANGLE = 40, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 1, FAR = 10000;
 	camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
 	scene.add(camera);
 	camera.position.set(0,150,400);
@@ -84,18 +90,9 @@ function init()
 	THREEx.WindowResize(renderer, camera);
 	THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
 	// CONTROLS
-
-	camControls = new THREE.FirstPersonControls(camera);
-	camControls.lookSpeed = 0.1;
-	camControls.movementSpeed = 90;
-	camControls.noFly = true;
-	camControls.lookVertical = true;
-	camControls.constrainVertical = false;
-	camControls.verticalMin = 1.0;
-	camControls.verticalMax = 2.0;
-	camControls.lon = -950;
-	camControls.lat = 120;
-	camControls.mouseDragOn = true;
+// CONTROLS
+	cameraControls = new THREE.OrbitControls( camera );
+	cameraControls.userPan = false;
 	// STATS
 	stats = new Stats();
 	stats.domElement.style.position = 'absolute';
@@ -155,6 +152,8 @@ function init()
 
 	scene.add(mesh[0]);
 
+	collidableMeshList.push(mesh[0]);
+
 	var materialArray = [];
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
@@ -171,6 +170,7 @@ function init()
 		mesh[i].position.set(-420, 300 - i * 57, -400);
 
 		scene.add(mesh[i]);
+		collidableMeshList.push(mesh[i]);
 	}
 	
 		var materialArray = [];
@@ -187,7 +187,7 @@ function init()
 	mesh[0].position.set(-420 + 60, 300, -400);
 
 	scene.add(mesh[0]);
-
+	collidableMeshList.push(mesh[0]);
 	var materialArray = [];
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
@@ -204,6 +204,7 @@ function init()
 		mesh[i].position.set(-420 + 60, 300 - i * 57, -400);
 
 		scene.add(mesh[i]);
+		collidableMeshList.push(mesh[i]);
 	}
 
 	var axes = new THREE.AxisHelper(100);
@@ -211,7 +212,7 @@ function init()
 	var imagePrefix = "images/";
 	var directions  = ["xneg", "xpos", "yneg", "ypos", "zpos", "zneg"];
 	var imageSuffix = ".png";
-	var skyGeometry = new THREE.CubeGeometry( 2000, 2000, 2000 );
+	var skyGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
 	var materialArray = [];
 
 	for (var i = 0; i < 6; i++)
@@ -224,8 +225,80 @@ function init()
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
 	scene.add( skyBox );
 
+	var imagePrefix = "images/";
+	var directions  = ["dawnmountain-xpos", "dawnmountain-xneg", "dawnmountain-ypos", "dawnmountain-yneg", "dawnmountain-zpos", "dawnmountain-zneg"];
+	var imageSuffix = ".png";
+	var skyGeometry = new THREE.CubeGeometry( 4000, 4000, 4000 );
+	var materialArray = [];
 
+	for (var i = 0; i < 6; i++)
+		materialArray.push( new THREE.MeshBasicMaterial({
+			map: THREE.ImageUtils.loadTexture( imagePrefix + directions[i] + imageSuffix ),
+			side: THREE.BackSide
+		}));
+
+	var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
+	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+
+	skyBox.position.set(10000, 0, 0);
+	scene.add( skyBox );
+
+	// Using wireframe materials to illustrate sha
+	// pe details.
+	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x0099ff, transparent: true, opacity: 0.4 } );
+	var geom = new THREE.SphereGeometry(50, 100, 100);
+	var shape1 = new THREE.Mesh(geom, darkMaterial);
+	shape1.position.set(10000, 0, 0);
+	scene.add( shape1 );
+
+	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0xcc0000} );
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(10000, 0, 0);
+	scene.add( shape2 );
+
+	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x0099ff} );
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	shape3 = new THREE.Mesh(geom, darkMaterial);
+	shape3.position.set(10000, 80, 0);
+	scene.add( shape3 );
+
+	////////////
+	// CUSTOM //
+	////////////
+
+	// create an array with six textures for a cool cube
+	var material = new THREE.MeshBasicMaterial( { color: 0xffffff });
+	var MovingCubeGeom = new THREE.CubeGeometry( 10, 10, 10);
+	MovingCube = new THREE.Mesh( MovingCubeGeom, material );
+	MovingCube.position.set(0, 25.1, 0);
+	scene.add( MovingCube );
+
+	// EVENTS.
+	window.addEventListener('resize', onWindowResize, false);
+	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 }
+
+
+function onWindowResize(event) {
+	WIDTH  = window.innerWidth;
+	HEIGHT = window.innerHeight;
+	renderer.setSize(WIDTH, HEIGHT);
+	camera.aspect = WIDTH / HEIGHT;
+	camera.updateProjectionMatrix();
+}
+function onDocumentMouseDown( event ) {
+	event.preventDefault();
+	lookAround = true;
+	cameraControls.center.copy( player.position );
+	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+}
+function onDocumentMouseUp( event ) {
+	lookAround = false;
+	document.removeEventListener( 'mouseup', onDocumentMouseUp );
+}
+
+var MovingCube;
 
 function animate()
 {
@@ -236,24 +309,83 @@ function animate()
 
 function update()
 {
-	// delta = change in time since last call (in seconds)
-	var delta = clock.getDelta();
-	camControls.update(delta);
-	stats.update();
+	var delta = clock.getDelta(); // seconds.
+	var moveDistance = 200 * delta; // 200 pixels per second
+	var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
 
+	// local transformations
+	cameraControls.update();
 
-	console.log(camera.position.z);
-	if ((camera.position.x >= -420 - 450 && camera.position.x <= -400) && (camera.position.y <= 300 && camera.position.y >= 300 - 50) &&
-	     camera.position.z <= -400 && camera.position.z >= -450) {
-		camera.position.set.x = 0;
-		camera.position.set.y = 0;
-		cae
+	// move forwards/backwards/left/right
+	if ( keyboard.pressed("W") )
+		MovingCube.translateZ( -moveDistance );
+	if ( keyboard.pressed("S") )
+		MovingCube.translateZ(  moveDistance );
+	if ( keyboard.pressed("Q") )
+		MovingCube.translateX( -moveDistance );
+	if ( keyboard.pressed("E") )
+		MovingCube.translateX(  moveDistance );
+
+	// rotate left/right/up/down
+	var rotation_matrix = new THREE.Matrix4().identity();
+	if ( keyboard.pressed("A") )
+		MovingCube.rotateOnAxis( new THREE.Vector3(0,1,0), rotateAngle);
+	if ( keyboard.pressed("D") )
+		MovingCube.rotateOnAxis( new THREE.Vector3(0,1,0), -rotateAngle);
+	if ( keyboard.pressed("R") )
+		MovingCube.translateY(moveDistance);
+	if ( keyboard.pressed("F") )
+		MovingCube.translateY(-moveDistance);
+
+	if ( keyboard.pressed("Z") )
+	{
+		MovingCube.position.set(0,25.1,0);
+		MovingCube.rotation.set(0,0,0);
 	}
+
+	var relativeCameraOffset = new THREE.Vector3(0,10,100);
+
+	var cameraOffset = relativeCameraOffset.applyMatrix4( MovingCube.matrixWorld );
+
+	camera.position.x = cameraOffset.x;
+	camera.position.y = cameraOffset.y;
+	camera.position.z = cameraOffset.z;
+	camera.lookAt( MovingCube.position );
+
+	//camera.updateMatrix();
+	//camera.updateProjectionMatrix();
+// collision detection:
+	//   determines if any of the rays from the cube's origin to each vertex
+	//		intersects any face of a mesh in the array of target meshes
+	//   for increased collision accuracy, add more vertices to the cube;
+	//		for example, new THREE.CubeGeometry( 64, 64, 64, 8, 8, 8, wireMaterial )
+	//   HOWEVER: when the origin of the ray is within the target mesh, collisions do not occur
+	var originPoint = MovingCube.position.clone();
+
+	for (var vertexIndex = 0; vertexIndex < MovingCube.geometry.vertices.length; vertexIndex++)
+	{
+		var localVertex = MovingCube.geometry.vertices[vertexIndex].clone();
+		var globalVertex = localVertex.applyMatrix4( MovingCube.matrix );
+		var directionVector = globalVertex.sub( MovingCube.position );
+
+		var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+
+		var collisionResults = ray.intersectObject( collidableMeshList[0] );
+
+		if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
+		{
+			MovingCube.position.set(10000 , 10, 100);
+			MovingCube.rotation.set(0,0,0);
+		}
+	}
+
+	shape3.rotation.z += 0.01;
+
+	stats.update();
 }
 
 function render()
 {
-
 	renderer.render( scene, camera );
 }
 
