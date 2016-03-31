@@ -45,13 +45,7 @@ This three.js demo is part of a collection at
 
 <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
 <script>
-/*
-	Three.js "tutorials by example"
-	Author: Lee Stemkoski
-	Date: July 2013 (three.js v59dev)
-*/
-
-// MAIN
+	// MAIN
 
 // standard global variables
 var container, scene, camera, renderer, cameraControls, stats;
@@ -71,6 +65,7 @@ function init()
 {
 	// SCENE
 	scene = new THREE.Scene();
+
 	// CAMERA
 	var SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
 	var VIEW_ANGLE = 40, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 1, FAR = 10000;
@@ -78,27 +73,31 @@ function init()
 	scene.add(camera);
 	camera.position.set(0,150,400);
 	camera.lookAt(scene.position);	
-	// RENDERER1111111111111111111
+
+	// RENDERER
 	if ( Detector.webgl )
 		renderer = new THREE.WebGLRenderer( {antialias:true} );
 	else
-		renderer = new THREE.CanvasRenderer(); 
+		renderer = new THREE.CanvasRenderer();
 	renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	container = document.getElementById( 'ThreeJS' );
 	container.appendChild( renderer.domElement );
+
 	// EVENTS
 	THREEx.WindowResize(renderer, camera);
 	THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
+
 	// CONTROLS
-// CONTROLS
 	cameraControls = new THREE.OrbitControls( camera );
 	cameraControls.userPan = false;
+
 	// STATS
 	stats = new Stats();
 	stats.domElement.style.position = 'absolute';
 	stats.domElement.style.bottom = '0px';
 	stats.domElement.style.zIndex = 100;
 	container.appendChild( stats.domElement );
+
 	// LIGHT
 	var light = new THREE.PointLight(0xffffff);
 	light.position.set(0,250,0);
@@ -110,8 +109,8 @@ function init()
 	////////////
 
 	// add 3D text
-	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000c0f } );
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
 	var textGeom = new THREE.TextGeometry( "PERIODIC TABLE OF THE ELEMENTS",
 	{
@@ -131,82 +130,7 @@ function init()
 	
 	textMesh.position.set( -0.5 * textWidth, 300, -400 );
 	scene.add(textMesh);
-/*
 
-	// ADD CUBES
-	var mesh = [7];
-	var geometry = new THREE.CubeGeometry(50, 50, 10);
-
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray);
-
-	mesh[0] = new THREE.Mesh(geometry, material);
-	mesh[0].position.set(-420, 300, -400);
-
-	scene.add(mesh[0]);
-
-	collidableMeshList.push(mesh[0]);
-
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0xff6666, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray);
-
-	for (var i = 1; i < 7; i++) {
-		var geometry = new THREE.CubeGeometry(50, 50, 10);
-		mesh[i] = new THREE.Mesh(geometry, material);
-		mesh[i].position.set(-420, 300 - i * 57, -400);
-
-		scene.add(mesh[i]);
-		collidableMeshList.push(mesh[i]);
-	}
-	
-		var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray);
-
-	mesh[0] = new THREE.Mesh(geometry, material);
-	mesh[0].position.set(-420 + 60, 300, -400);
-
-	scene.add(mesh[0]);
-	collidableMeshList.push(mesh[0]);
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0xff6666, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray);
-
-	for (var i = 1; i < 7; i++) {
-		var geometry = new THREE.CubeGeometry(50, 50, 10);
-		mesh[i] = new THREE.Mesh(geometry, material);
-		mesh[i].position.set(-420 + 60, 300 - i * 57, -400);
-
-		scene.add(mesh[i]);
-		collidableMeshList.push(mesh[i]);
-	}
-*/
 
 	/****************** column 0 *********************/
 	// ADD CUBES
@@ -247,10 +171,11 @@ function init()
 		mesh[i].position.set(-420, 300 - i * 57, -400);
 
 		scene.add(mesh[i]);
+		collidableMeshList.push(mesh[i]);
+
 	}
 
 	/****************** column 1 *********************/
-	//육면정보
 
 
 	for (var i = 1; i < 7; i++) {
@@ -871,9 +796,9 @@ function init()
 		scene.add(mesh[i]);
 	}
 
-
-	var axes = new THREE.AxisHelper(100);
-	scene.add( axes );
+     /** teleport **/
+	//var axes = new THREE.AxisHelper(100);
+	//scene.add( axes );
 	var imagePrefix = "images/";
 	var directions  = ["xneg", "xpos", "yneg", "ypos", "zpos", "zneg"];
 	var imageSuffix = ".png";
@@ -891,7 +816,8 @@ function init()
 	scene.add( skyBox );
 
 	var imagePrefix = "images/";
-	var directions  = ["dawnmountain-xpos", "dawnmountain-xneg", "dawnmountain-ypos", "dawnmountain-yneg", "dawnmountain-zpos", "dawnmountain-zneg"];
+	var directions  = ["dawnmountain-xpos", "dawnmountain-xneg", "dawnmountain-ypos",
+			           "dawnmountain-yneg", "dawnmountain-zpos", "dawnmountain-zneg"];
 	var imageSuffix = ".png";
 	var skyGeometry = new THREE.CubeGeometry( 4000, 4000, 4000 );
 	var materialArray = [];
@@ -908,8 +834,7 @@ function init()
 	skyBox.position.set(10000, 0, 0);
 	scene.add( skyBox );
 
-	// Using wireframe materials to illustrate sha
-	// pe details.
+	// Using wireframe materials to illustrate shape details.
 	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x0099ff, transparent: true, opacity: 0.4 } );
 	var geom = new THREE.SphereGeometry(50, 100, 100);
 	var shape1 = new THREE.Mesh(geom, darkMaterial);
@@ -924,7 +849,7 @@ function init()
 
 	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x0099ff} );
 	var geom = new THREE.SphereGeometry(5, 100, 100);
-	shape3 = new THREE.Mesh(geom, darkMaterial);
+	var shape3 = new THREE.Mesh(geom, darkMaterial);
 	shape3.position.set(10000, 80, 0);
 	scene.add( shape3 );
 
@@ -1035,7 +960,8 @@ function update()
 
 		var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
 
-		var collisionResults = ray.intersectObject( collidableMeshList[0] );
+		var collisionResults = ray.intersectObject( collidableMeshList[vertexIndex] );
+
 
 		if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
 		{
