@@ -156,6 +156,7 @@ function init()
 	collidableMeshList.push(mesh[0]);
 
 
+
 	for (var i = 1; i < 7; i++) {
 		var materialArray = [];
 		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xff6666 }));
@@ -171,9 +172,10 @@ function init()
 		mesh[i].position.set(-420, 300 - i * 57, -400);
 
 		scene.add(mesh[i]);
-		collidableMeshList.push(mesh[i]);
+		//collidableMeshList.push(mesh[i]);
 
 	}
+	collidableMeshList.push(mesh[1]);
 
 	/****************** column 1 *********************/
 
@@ -834,20 +836,20 @@ function init()
 	skyBox.position.set(10000, 0, 0);
 	scene.add( skyBox );
 
-	// Using wireframe materials to illustrate shape details.
-	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x0099ff, transparent: true, opacity: 0.4 } );
+	// particle
+	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x02070b, transparent: true, opacity: 0.4 } ); //black
 	var geom = new THREE.SphereGeometry(50, 100, 100);
 	var shape1 = new THREE.Mesh(geom, darkMaterial);
 	shape1.position.set(10000, 0, 0);
 	scene.add( shape1 );
 
-	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0xcc0000} );
+	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0xcc0000} ); //red
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var shape2 = new THREE.Mesh(geom, darkMaterial);
 	shape2.position.set(10000, 0, 0);
 	scene.add( shape2 );
 
-	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x0099ff} );
+	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x0099ff} ); //skyblue
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var shape3 = new THREE.Mesh(geom, darkMaterial);
 	shape3.position.set(10000, 80, 0);
@@ -857,7 +859,64 @@ function init()
 	// CUSTOM //
 	////////////
 
-	// create an array with six textures for a cool cube
+	/** 2nd skybox for teleport **/
+	var imagePrefix = "images/";
+	var directions  = ["xneg", "xpos", "yneg", "ypos", "zpos", "zneg"];
+	var imageSuffix = ".png";
+	var skyGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
+	var materialArray = [];
+
+
+	for (var i = 0; i < 6; i++)
+		materialArray.push( new THREE.MeshBasicMaterial({
+			map: THREE.ImageUtils.loadTexture( imagePrefix + directions[i] + imageSuffix ),
+			side: THREE.BackSide
+		}));
+
+	var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
+	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+	scene.add( skyBox );
+
+	var imagePrefix = "images/";
+	var directions  = ["DarkSea-xpos", "DarkSea-xneg", "DarkSea-ypos",
+		"DarkSea-yneg", "DarkSea-zpos", "DarkSea-zneg"];
+	var imageSuffix = ".png";
+	var skyGeometry = new THREE.CubeGeometry( 4000, 4000, 4000 );
+	var materialArray = [];
+
+	for (var i = 0; i < 6; i++)
+		materialArray.push( new THREE.MeshBasicMaterial({
+			map: THREE.ImageUtils.loadTexture( imagePrefix + directions[i] + imageSuffix ),
+			side: THREE.BackSide
+		}));
+
+	var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
+	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+
+	skyBox.position.set(20000, 0, 0);
+	scene.add( skyBox );
+
+	// particle
+	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x0eec1d, transparent: true, opacity: 0.4 } ); //green
+	var geom = new THREE.SphereGeometry(50, 100, 100);
+	var shape1 = new THREE.Mesh(geom, darkMaterial);
+	shape1.position.set(20000, 0, 0);
+	scene.add( shape1 );
+
+	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(20000, 0, 0);
+	scene.add( shape2 );
+
+	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0xec0ed7} ); //skyblue
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape3 = new THREE.Mesh(geom, darkMaterial);
+	shape3.position.set(20000, 80, 0);
+	scene.add( shape3 );
+
+
+	// movingCube
 	var material = new THREE.MeshBasicMaterial( { color: 0xffffff });
 	var MovingCubeGeom = new THREE.CubeGeometry( 10, 10, 10);
 	MovingCube = new THREE.Mesh( MovingCubeGeom, material );
@@ -944,7 +1003,7 @@ function update()
 
 	//camera.updateMatrix();
 	//camera.updateProjectionMatrix();
-// collision detection:
+    // collision detection:
 	//   determines if any of the rays from the cube's origin to each vertex
 	//		intersects any face of a mesh in the array of target meshes
 	//   for increased collision accuracy, add more vertices to the cube;
@@ -960,15 +1019,36 @@ function update()
 
 		var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
 
-		var collisionResults = ray.intersectObject( collidableMeshList[vertexIndex] );
-
+		var collisionResults = ray.intersectObject( collidableMeshList[0] );
 
 		if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
 		{
-			MovingCube.position.set(10000 , 10, 100);
+				MovingCube.position.set(10000 , 0, 0);
+				MovingCube.rotation.set(0,0,0);
+
+		}
+	}
+
+	//2nd collision
+	var originPoint = MovingCube.position.clone();
+
+	for (var vertexIndex = 0; vertexIndex < MovingCube.geometry.vertices.length; vertexIndex++)
+	{
+		var localVertex = MovingCube.geometry.vertices[vertexIndex].clone();
+		var globalVertex = localVertex.applyMatrix4( MovingCube.matrix );
+		var directionVector = globalVertex.sub( MovingCube.position );
+
+		var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+
+		var collisionResults = ray.intersectObject( collidableMeshList[1] );
+
+		if ( collisionResults.length > 0 && collisionResults[1].distance < directionVector.length() )
+		{
+			MovingCube.position.set(20000 , 0, 0);
 			MovingCube.rotation.set(0,0,0);
 		}
 	}
+
 
 	shape3.rotation.z += 0.01;
 
