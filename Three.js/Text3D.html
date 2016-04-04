@@ -172,10 +172,10 @@ function init()
 		mesh[i].position.set(-420, 300 - i * 57, -400);
 
 		scene.add(mesh[i]);
-		//collidableMeshList.push(mesh[i]);
-
+		collidableMeshList.push(mesh[i]);
 	}
-	collidableMeshList.push(mesh[1]);
+
+	//collidableMeshList.push(mesh[1]);
 
 	/****************** column 1 *********************/
 
@@ -1021,31 +1021,22 @@ function update()
 
 		var collisionResults = ray.intersectObject( collidableMeshList[0] );
 
+		// Hydrogen
 		if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
 		{
 				MovingCube.position.set(10000 , 0, 0);
 				MovingCube.rotation.set(0,0,0);
 
 		}
-	}
 
-	//2nd collision
-	var originPoint = MovingCube.position.clone();
-
-	for (var vertexIndex = 0; vertexIndex < MovingCube.geometry.vertices.length; vertexIndex++)
-	{
-		var localVertex = MovingCube.geometry.vertices[vertexIndex].clone();
-		var globalVertex = localVertex.applyMatrix4( MovingCube.matrix );
-		var directionVector = globalVertex.sub( MovingCube.position );
-
-		var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
-
+		//
 		var collisionResults = ray.intersectObject( collidableMeshList[1] );
 
-		if ( collisionResults.length > 0 && collisionResults[1].distance < directionVector.length() )
+		if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
 		{
-			MovingCube.position.set(20000 , 0, 0);
+			MovingCube.position.set(10000 , 0, 0);
 			MovingCube.rotation.set(0,0,0);
+
 		}
 	}
 
