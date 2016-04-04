@@ -57,6 +57,7 @@ var arrowList = [];
 var directionList = [];
 var shape3;
 var parent;
+var android;
 
 init();
 animate();
@@ -99,9 +100,37 @@ function init()
 	stats.domElement.style.zIndex = 100;
 	container.appendChild( stats.domElement );
 
+	// 2 poiting lights in the main skybox
 	// LIGHT
-	var light = new THREE.PointLight(0xffffff);
-	light.position.set(0,250,0);
+	var light = new THREE.PointLight(0xffffff, 1, 10000);
+	light.position.set(0,250,1000);
+	scene.add(light);
+
+	// LIGHT
+	var light = new THREE.PointLight(0xffffff, 1, 10000);
+	light.position.set(0,250,-1000);
+	scene.add(light);
+
+	// H skybox lighting
+	// LIGHT
+	var light = new THREE.PointLight(0xffffff, 1, 10000);
+	light.position.set(10000,250,1000);
+	scene.add(light);
+
+	// LIGHT
+	var light = new THREE.PointLight(0xffffff, 1, 10000);
+	light.position.set(10000,250,-1000);
+	scene.add(light);
+
+	// for the Li skybox
+	// LIGHT
+	var light = new THREE.PointLight(0xffffff, 1, 10000);
+	light.position.set(20000,250,1000);
+	scene.add(light);
+
+	// LIGHT
+	var light = new THREE.PointLight(0xffffff, 1, 10000);
+	light.position.set(20000,250,-1000);
 	scene.add(light);
 
 	
@@ -818,9 +847,10 @@ function init()
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
 	scene.add( skyBox );
 
+	// hydrogen skybox
 	var imagePrefix = "images/";
-	var directions  = ["dawnmountain-xpos", "dawnmountain-xneg", "dawnmountain-ypos",
-			           "dawnmountain-yneg", "dawnmountain-zpos", "dawnmountain-zneg"];
+	var directions  = ["DarkSea-xpos", "DarkSea-xneg", "DarkSea-ypos",
+		"DarkSea-yneg", "DarkSea-zpos", "DarkSea-zneg"];
 	var imageSuffix = ".png";
 	var skyGeometry = new THREE.CubeGeometry( 4000, 4000, 4000 );
 	var materialArray = [];
@@ -833,24 +863,23 @@ function init()
 
 	var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
-
 	skyBox.position.set(10000, 0, 0);
 	scene.add( skyBox );
 
 	// particle
-	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x02070b, transparent: true, opacity: 0.4 } ); //black
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0x02070b, transparent: true, opacity: 0.4 } ); //black
 	var geom = new THREE.SphereGeometry(50, 100, 100);
 	var shape1 = new THREE.Mesh(geom, darkMaterial);
 	shape1.position.set(10000, 0, 0);
 	scene.add( shape1 );
 
-	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0xcc0000} ); //red
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var shape2 = new THREE.Mesh(geom, darkMaterial);
 	shape2.position.set(10000, 0, 0);
 	scene.add( shape2 );
 
-	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x0099ff} ); //skyblue
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0x0099ff} ); //skyblue
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var shape3 = new THREE.Mesh(geom, darkMaterial);
 	shape3.position.set(10000, 80, 0);
@@ -887,11 +916,11 @@ function init()
 
 
 	// mesh
-	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0xec0ed7} ); //skyblue
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xec0ed7} ); //skyblue
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var mesh1 = new THREE.Mesh(geom, darkMaterial);
 
-	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0xec0ed7} ); //skyblue
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xec0ed7} ); //skyblue
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var mesh2 = new THREE.Mesh(geom, darkMaterial);
 
@@ -1024,31 +1053,73 @@ function init()
 	scene.add(textMesh);
 
 
-	// particle
-	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x0eec1d, transparent: true, opacity: 0.4 } ); //green
+	// spheres
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0x0eec1d, transparent: true, opacity: 0.4 } ); //green
 	var geom = new THREE.SphereGeometry(50, 100, 100);
 	var shape1 = new THREE.Mesh(geom, darkMaterial);
 	shape1.position.set(20000, 0, 0);
 	scene.add( shape1 );
 
-	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0xcc0000} ); //red
+	// protons
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(20000, 0 + 10, 0);
+	scene.add( shape2 );
+
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(20000 - 10, 0, 0);
+	scene.add( shape2 );
+
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(20000 + 10, 0, 0);
+	scene.add( shape2 );
+
+	// neutrons
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(20000 + 10, 0 + 10, 0);
+	scene.add( shape2 );
+
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(20000 - 10, 0 - 10, 0);
+	scene.add( shape2 );
+
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(20000 + 10, 0 - 10, 0);
+	scene.add( shape2 );
+
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //red
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var shape2 = new THREE.Mesh(geom, darkMaterial);
 	shape2.position.set(20000, 0, 0);
 	scene.add( shape2 );
 
-	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0xec0ed7} ); //skyblue
+
+	//
+
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xec0ed7} ); //skyblue
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var shape3 = new THREE.Mesh(geom, darkMaterial);
 	//shape3.position.set(20000, 80, 0);
 
 
 	// movingCube
-	var material = new THREE.MeshBasicMaterial( { color: 0xffffff });
-	var MovingCubeGeom = new THREE.CubeGeometry( 10, 10, 10);
+	var material = new THREE.MeshPhongMaterial( {color: 0xffff00 });
+	var MovingCubeGeom = new THREE.SphereGeometry( 5, 32, 32);
 	MovingCube = new THREE.Mesh( MovingCubeGeom, material );
 	MovingCube.position.set(0, 25.1, 1000);
 	scene.add( MovingCube );
+
 
 	// EVENTS.
 	window.addEventListener('resize', onWindowResize, false);
@@ -1061,6 +1132,7 @@ function init()
 	pivot1.add( mesh1 );
 	pivot2.add( mesh2 );
 	pivot3.add( shape3 );
+
 }
 
 
@@ -1097,7 +1169,7 @@ function animate()
 function update()
 {
 	var delta = clock.getDelta(); // seconds.
-	var moveDistance = 200 * delta; // 200 pixels per second
+	var moveDistance = 400 * delta; // 400 pixels per second
 	var rotateAngle = Math.PI / 2 * delta;   // pi/2 radians (90 degrees) per second
 
 	// local transformations
@@ -1162,9 +1234,8 @@ function update()
 		// Hydrogen
 		if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
 		{
-				MovingCube.position.set(10000 , 0, 0);
+				MovingCube.position.set(10000 , 0, 300);
 				MovingCube.rotation.set(0,0,0);
-
 		}
 
 		//
@@ -1172,7 +1243,7 @@ function update()
 
 		if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
 		{
-			MovingCube.position.set(20000 , 0, 0);
+			MovingCube.position.set(20000 , 0, 300);
 			MovingCube.rotation.set(0,0,0);
 
 		}
