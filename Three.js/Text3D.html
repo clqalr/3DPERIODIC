@@ -42,7 +42,34 @@ This three.js demo is part of a collection at
 <a href="http://stemkoski.github.io/Three.js/">http://stemkoski.github.io/Three.js/</a>
 </div>
 <!-- ------------------------------------------------------------ -->
+<!-- ---------------- Custom Shader Code ------------------------ -->
+<script id="vertexShader" type="x-shader/x-vertex">
+uniform vec3 viewVector;
+uniform float c;
+uniform float p;
+varying float intensity;
+void main()
+{
+    vec3 vNormal = normalize( normalMatrix * normal );
+	vec3 vNormel = normalize( normalMatrix * viewVector );
+	intensity = pow( c - dot(vNormal, vNormel), p );
 
+    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+}
+</script>
+
+<!-- fragment shader a.k.a. pixel shader -->
+<script id="fragmentShader" type="x-shader/x-vertex">
+uniform vec3 glowColor;
+varying float intensity;
+void main()
+{
+	vec3 glow = glowColor * intensity;
+    gl_FragColor = vec4( glow, 1.0 );
+}
+</script>
+<!-- to create a better cube glow, we need a more rounded cube... -->
+<script src="js/SubdivisionModifier.js"></script>
 <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
 <script>
 	// MAIN
@@ -186,6 +213,35 @@ function init()
 	scene.add(mesh[0]); //add on the screen
 	collidableMeshList.push(mesh[0]);
 
+	// create custom material from the shader code above
+	//   that is within specially labeled script tags
+
+
+	// create custom material from the shader code above
+	//   that is within specially labeled script tags
+	var customMaterial = new THREE.ShaderMaterial(
+			{
+				uniforms:
+				{
+					"c":   { type: "f", value: 1.4 },
+					"p":   { type: "f", value: 1.7 },
+					glowColor: { type: "c", value: new THREE.Color(0xffff00) },
+					viewVector: { type: "v3", value: camera.position }
+				},
+				vertexShader:   document.getElementById( 'vertexShader'   ).textContent,
+				fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
+				side: THREE.FrontSide,
+				blending: THREE.AdditiveBlending,
+				transparent: true
+			}   );
+
+	this.moonGlow = new THREE.Mesh( geometry.clone(), customMaterial.clone() );
+	moonGlow.position = mesh[0].position;
+	moonGlow.scale.multiplyScalar(1.1);
+	scene.add( moonGlow );
+
+
+
 
 
 	for (var i = 1; i < 7; i++) {
@@ -206,7 +262,32 @@ function init()
 		collidableMeshList.push(mesh[i]);
 	}
 
-	//collidableMeshList.push(mesh[1]);
+	// create custom material from the shader code above
+	//   that is within specially labeled script tags
+
+
+	// create custom material from the shader code above
+	//   that is within specially labeled script tags
+	var customMaterial = new THREE.ShaderMaterial(
+			{
+				uniforms:
+				{
+					"c":   { type: "f", value: 1.4 },
+					"p":   { type: "f", value: 1.7 },
+					glowColor: { type: "c", value: new THREE.Color(0xffff00) },
+					viewVector: { type: "v3", value: camera.position }
+				},
+				vertexShader:   document.getElementById( 'vertexShader'   ).textContent,
+				fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
+				side: THREE.FrontSide,
+				blending: THREE.AdditiveBlending,
+				transparent: true
+			}   );
+
+	this.moonGlow = new THREE.Mesh( geometry.clone(), customMaterial.clone() );
+	moonGlow.position = mesh[1].position;
+	moonGlow.scale.multiplyScalar(1.1);
+	scene.add( moonGlow );
 
 	/****************** column 1 *********************/
 
@@ -1147,6 +1228,7 @@ function init()
 	pivot1.add( mesh1 );
 	pivot2.add( mesh2 );
 	pivot3.add( shape3 );
+
 
 }
 
