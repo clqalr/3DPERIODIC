@@ -56,6 +56,7 @@ var collidableMeshList = [];
 var arrowList = [];
 var directionList = [];
 var shape3;
+var parent;
 
 init();
 animate();
@@ -800,7 +801,8 @@ function init()
 
      /** teleport **/
 	//var axes = new THREE.AxisHelper(100);
-	//scene.add( axes );
+	//scene.add( axes )
+	// main skybox
 	var imagePrefix = "images/";
 	var directions  = ["xneg", "xpos", "yneg", "ypos", "zpos", "zneg"];
 	var imageSuffix = ".png";
@@ -861,25 +863,8 @@ function init()
 
 	/** 2nd skybox for teleport **/
 	var imagePrefix = "images/";
-	var directions  = ["xneg", "xpos", "yneg", "ypos", "zpos", "zneg"];
-	var imageSuffix = ".png";
-	var skyGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
-	var materialArray = [];
-
-
-	for (var i = 0; i < 6; i++)
-		materialArray.push( new THREE.MeshBasicMaterial({
-			map: THREE.ImageUtils.loadTexture( imagePrefix + directions[i] + imageSuffix ),
-			side: THREE.BackSide
-		}));
-
-	var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
-	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
-	scene.add( skyBox );
-
-	var imagePrefix = "images/";
-	var directions  = ["DarkSea-xpos", "DarkSea-xneg", "DarkSea-ypos",
-		"DarkSea-yneg", "DarkSea-zpos", "DarkSea-zneg"];
+	var directions  = ["dawnmountain-xpos", "dawnmountain-xneg", "dawnmountain-ypos",
+		"dawnmountain-yneg", "dawnmountain-zpos", "dawnmountain-zneg"];
 	var imageSuffix = ".png";
 	var skyGeometry = new THREE.CubeGeometry( 4000, 4000, 4000 );
 	var materialArray = [];
@@ -892,9 +877,9 @@ function init()
 
 	var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
-
 	skyBox.position.set(20000, 0, 0);
 	scene.add( skyBox );
+
 
 	// particle
 	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0x0eec1d, transparent: true, opacity: 0.4 } ); //green
@@ -913,7 +898,6 @@ function init()
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var shape3 = new THREE.Mesh(geom, darkMaterial);
 	shape3.position.set(20000, 80, 0);
-	scene.add( shape3 );
 
 
 	// movingCube
@@ -926,6 +910,47 @@ function init()
 	// EVENTS.
 	window.addEventListener('resize', onWindowResize, false);
 	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
+	// geometry
+	var geometry = new THREE.CubeGeometry( 2, 2, 2 );
+
+	// material
+	var material = new THREE.MeshBasicMaterial( {
+		color: 0xffffff,
+		wireframe: true
+	} );
+
+	// parent
+	parent = new THREE.Object3D();
+	parent.position.set(20000 , 0, 0);
+	scene.add( parent );
+
+	// pivots
+	var pivot1 = new THREE.Object3D();
+	var pivot2 = new THREE.Object3D();
+	var pivot3 = new THREE.Object3D();
+	pivot1.rotation.z = 0;
+	pivot2.rotation.z = 2 * Math.PI / 3;
+	pivot3.rotation.z = 4 * Math.PI / 3;;
+	parent.add( pivot1 );
+	parent.add( pivot2 );
+	parent.add( pivot3 );
+
+
+	// mesh
+	var mesh1 = new THREE.Mesh( geometry, material );
+	var mesh2 = new THREE.Mesh( geometry, material );
+
+	var darkMaterial = new THREE.MeshBasicMaterial( { color: 0xec0ed7} ); //skyblue
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var mesh3 = new THREE.Mesh(geom, darkMaterial);
+	shape3.position.set(20000, 80, 0);
+	mesh1.position.y = 5;
+	mesh2.position.y = 5;
+	mesh3.position.y = 80;
+	pivot1.add( mesh1 );
+	pivot2.add( mesh2 );
+	pivot3.add( mesh3 );
 }
 
 
@@ -952,6 +977,7 @@ var MovingCube;
 function animate()
 {
     requestAnimationFrame( animate );
+	parent.rotation.z += 0.01;
 	render();
 	update();
 }
@@ -1034,14 +1060,11 @@ function update()
 
 		if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
 		{
-			MovingCube.position.set(10000 , 0, 0);
+			MovingCube.position.set(20000 , 0, 0);
 			MovingCube.rotation.set(0,0,0);
 
 		}
 	}
-
-
-	shape3.rotation.z += 0.01;
 
 	stats.update();
 }
