@@ -800,8 +800,7 @@ function init()
 	}
 
      /** teleport **/
-	//var axes = new THREE.AxisHelper(100);
-	//scene.add( axes )
+
 	// main skybox
 	var imagePrefix = "images/";
 	var directions  = ["xneg", "xpos", "yneg", "ypos", "zpos", "zneg"];
@@ -863,8 +862,8 @@ function init()
 
 	/** 2nd skybox for teleport **/
 	var imagePrefix = "images/";
-	var directions  = ["dawnmountain-xpos", "dawnmountain-xneg", "dawnmountain-ypos",
-		"dawnmountain-yneg", "dawnmountain-zpos", "dawnmountain-zneg"];
+	var directions  = ["DarkSea-xpos", "DarkSea-xneg", "DarkSea-ypos",
+		"DarkSea-yneg", "DarkSea-zpos", "DarkSea-zneg"];
 	var imageSuffix = ".png";
 	var skyGeometry = new THREE.CubeGeometry( 4000, 4000, 4000 );
 	var materialArray = [];
@@ -879,6 +878,115 @@ function init()
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
 	skyBox.position.set(20000, 0, 0);
 	scene.add( skyBox );
+
+	// add 3D text: "Element of Lithium"
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeomTitle = new THREE.TextGeometry( "ELEMENT OF LITHIUM",
+			{
+				size: 20, height: 4, curveSegments: 3,
+				font: "helvetiker", weight: "bold", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeomTitle, textMaterial );
+
+	textGeomTitle.computeBoundingBox();
+	var textWidth = textGeomTitle.boundingBox.max.x - textGeomTitle.boundingBox.min.x;
+
+	textMesh.position.set( 20100, 100, -400 );
+	scene.add(textMesh);
+
+	// add 3D text - Information(symbol)
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Symbol: Li",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+
+
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 20100, 50, -400 );
+	scene.add(textMesh);
+
+	// add 3D text - Information(mess)
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Atomic Mass: 6.941 amu",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+
+
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 20100, 30, -400 );
+	scene.add(textMesh);
+
+	// add 3D text - Information(melting point)
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Melting Point: 180.54 °C (453.69 K, 356.972 °F)",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+
+
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 20100, 10, -400 );
+	scene.add(textMesh);
+
+	// add 3D text - Information(boling point)
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Boiling Point: 1347.0 °C (1620.15 K, 2456.6 °F)",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+
+
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 20100, -10, -400 );
+	scene.add(textMesh);
 
 
 	// particle
