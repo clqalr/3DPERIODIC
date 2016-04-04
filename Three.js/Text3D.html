@@ -57,6 +57,7 @@ var arrowList = [];
 var directionList = [];
 var shape3;
 var parent;
+var parentH;
 var android;
 
 init();
@@ -847,6 +848,16 @@ function init()
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
 	scene.add( skyBox );
 
+	// parent
+	parentH = new THREE.Object3D();
+	parentH.position.set(10000 , 0, 0);
+	scene.add( parentH );
+
+	// pivots
+	var pivot1 = new THREE.Object3D();
+	pivot1.rotation.z = 0;
+	parentH.add( pivot1 );
+
 	// hydrogen skybox
 	var imagePrefix = "images/";
 	var directions  = ["DarkSea-xpos", "DarkSea-xneg", "DarkSea-ypos",
@@ -867,7 +878,7 @@ function init()
 	scene.add( skyBox );
 
 	// particle
-	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0x02070b, transparent: true, opacity: 0.4 } ); //black
+	var darkMaterial = new THREE.MeshPhongMaterial( { color:  0x0eec1d, transparent: true, opacity: 0.4 } ); //black
 	var geom = new THREE.SphereGeometry(50, 100, 100);
 	var shape1 = new THREE.Mesh(geom, darkMaterial);
 	shape1.position.set(10000, 0, 0);
@@ -882,8 +893,12 @@ function init()
 	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0x0099ff} ); //skyblue
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var shape3 = new THREE.Mesh(geom, darkMaterial);
-	shape3.position.set(10000, 80, 0);
-	scene.add( shape3 );
+	//shape3.position.set(10000, 80, 0);
+	//scene.add( shape3 );
+
+	shape3.position.y = 80;
+
+	pivot1.add( shape3 );
 
 	////////////
 	// CUSTOM //
@@ -1159,11 +1174,13 @@ var MovingCube;
 function animate()
 {
     requestAnimationFrame( animate );
+	render();
+	update();
+
 	parent.children[0].rotation.z += 0.01;
 	parent.children[1].rotation.z += 0.01;
 	parent.children[2].rotation.z += 0.02;
-	render();
-	update();
+	parentH.rotation.z += 0.01;
 }
 
 function update()
