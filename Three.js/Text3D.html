@@ -85,6 +85,7 @@ var directionList = [];
 var shape3;
 var parent;
 var parentH;
+var parentNa;
 var android;
 
 init();
@@ -158,6 +159,16 @@ function init()
 	light.position.set(20000,250,-1000);
 	scene.add(light);
 
+	// light in Na skybox
+	var light = new THREE.PointLight(0xffffff, 1, 10000);
+	light.position.set(25000,250,1000);
+	scene.add(light);
+
+	// light in Na skybox
+	var light = new THREE.PointLight(0xffffff, 1, 10000);
+	light.position.set(25000,250,-1000);
+	scene.add(light);
+
 	/****************** main skybox *********************/
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
@@ -183,7 +194,7 @@ function init()
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
-	var textGeom = new THREE.TextGeometry( "Move Direction: ",
+	var textGeom = new THREE.TextGeometry( "Move: ",
 			{
 				size: 20, height: 4, curveSegments: 3,
 				font: "helvetiker", weight: "bold", style: "normal",
@@ -197,7 +208,7 @@ function init()
 	textGeom.computeBoundingBox();
 	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
 
-	textMesh.position.set(300, -330, -400);
+	textMesh.position.set(400, -330, -400);
 	scene.add(textMesh);
 
 	var mesh;
@@ -266,6 +277,93 @@ function init()
 	mesh.position.set(620, -380, -400);
 	scene.add(mesh); //add on the screen
 
+
+
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Navigation: ",
+			{
+				size: 20, height: 4, curveSegments: 3,
+				font: "helvetiker", weight: "bold", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set(-800, -330, -400);
+	scene.add(textMesh);
+
+	var mesh;
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+	//(육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0xffffff, map: THREE.ImageUtils.loadTexture( 'images/letterW.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	mesh = new THREE.Mesh(geometry, material);
+	mesh.position.set(-570, -330, -400);
+	scene.add(mesh); //add on the screen
+
+	var mesh;
+	var geometry = new THREE.CubeGeometry(50, 50, 10);
+
+	//(육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0xffffff, map: THREE.ImageUtils.loadTexture( 'images/letterA.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	mesh = new THREE.Mesh(geometry, material);
+	mesh.position.set(-620, -380, -400);
+	scene.add(mesh); //add on the screen
+
+	//(육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0xffffff, map: THREE.ImageUtils.loadTexture( 'images/letterS.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	mesh = new THREE.Mesh(geometry, material);
+	mesh.position.set(-570, -380, -400);
+	scene.add(mesh); //add on the screen
+
+	//(육면)
+	var materialArray = [];
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0xffffff, map: THREE.ImageUtils.loadTexture( 'images/letterD.png' ) }));
+	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xffffff }));
+
+	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
+	mesh = new THREE.Mesh(geometry, material);
+	mesh.position.set(-520, -380, -400);
+	scene.add(mesh); //add on the screen
 
 	/****************** column 0 *********************/
 	// ADD CUBES
@@ -363,9 +461,10 @@ function init()
 		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xe67817 }));
 		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xe67817 }));
 		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xe67817 }));
-		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xe67817, map: THREE.ImageUtils.loadTexture( 'images/column1'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xe67817, map: THREE.ImageUtils.loadTexture( 'images/column1'+i+'.png') }));
 		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xe67817 }));
 		var material = new THREE.MeshFaceMaterial(materialArray);
+
 
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
@@ -680,7 +779,7 @@ function init()
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/column130.png' ) }));
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
 
 	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
@@ -690,36 +789,38 @@ function init()
 
 	scene.add(mesh[0]); //add on the screen
 
-	//light blue material (육면)
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x12C7FD, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray);
 
 	for (var i = 1; i <= 2; i++) {
+
+		//light blue material (육면)
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0x12C7FD, map: THREE.ImageUtils.loadTexture( 'images/column13'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray);
+
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-420+780, 300 - (i+1) * 57, -400);
 		scene.add(mesh[i]);
 	}
 
-	//green material (육면)
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x00C30D, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray);
 
 	for (var i = 3; i <= 5; i++) {
+		//green material (육면)
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0x00C30D, map: THREE.ImageUtils.loadTexture( 'images/column13'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray);
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-420+780, 300 - (i+1) * 57, -400);
@@ -732,56 +833,59 @@ function init()
 	var geometry = new THREE.CubeGeometry(50, 50, 10);
 
 
-	//blue material (육면)
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
 
-	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
 
 	for (var i = 0; i <= 1; i++) {
+		//blue material (육면)
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/column14'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-420+840, 300 - (i+1) * 57, -400);
 		scene.add(mesh[i]);
 	}
-	scene.add(mesh[0]); //add on the screen
+	//scene.add(mesh[0]); //add on the screen
 
 
-	//light blue material (육면)
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x12C7FD, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray);
 
 	for (var i = 2; i <= 3; i++) {
+
+		//light blue material (육면)
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0x12C7FD, map: THREE.ImageUtils.loadTexture( 'images/column14'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray);
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-420+840, 300 - (i+1) * 57, -400);
 		scene.add(mesh[i]);
 	}
 
-	//green material (육면)
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x00C30D, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
 
-	var material = new THREE.MeshFaceMaterial(materialArray);
 
 	for (var i = 4; i <= 5; i++) {
+		//green material (육면)
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0x00C30D, map: THREE.ImageUtils.loadTexture( 'images/column14'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray);
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-420+840, 300 - (i+1) * 57, -400);
@@ -795,36 +899,35 @@ function init()
 	var geometry = new THREE.CubeGeometry(50, 50, 10);
 
 
-	//blue material (육면)
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
-
 	for (var i = 0; i <= 2; i++) {
+
+		//blue material (육면)
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4d94ff, map: THREE.ImageUtils.loadTexture( 'images/column15'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4d94ff }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-420+900, 300 - (i+1) * 57, -400);
 		scene.add(mesh[i]);
 	}
 
-	//light blue material (육면)
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x12C7FD, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray);
-
 	for (var i = 3; i <= 4; i++) {
+		//light blue material (육면)
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0x12C7FD, map: THREE.ImageUtils.loadTexture( 'images/column15'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x12C7FD }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray);
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-420+900, 300 - (i+1) * 57, -400);
@@ -837,7 +940,7 @@ function init()
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x00C30D, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
+	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x00C30D, map: THREE.ImageUtils.loadTexture( 'images/column155.png' ) }));
 	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x00C30D }));
 
 	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
@@ -853,24 +956,24 @@ function init()
 	var geometry = new THREE.CubeGeometry(50, 50, 10);
 
 
-	//navy material (육면)
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4454D0, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
-
 	for (var i = 0; i <= 5; i++) {
+
+		//navy material (육면)
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0x4454D0, map: THREE.ImageUtils.loadTexture( 'images/column16'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x4454D0 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-420+960, 300 - (i+1) * 57, -400);
 		scene.add(mesh[i]);
 	}
-	scene.add(mesh[0]); //add on the screen
+	//scene.add(mesh[0]); //add on the screen
 
 
 	/****************** column 17 *********************/
@@ -878,48 +981,49 @@ function init()
 	var mesh = [7];
 	var geometry = new THREE.CubeGeometry(50, 50, 10);
 
-	//blue material (육면)
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0xE06EF6, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
-
 	for (var i = 0; i <= 6; i++) {
+
+		//blue material (육면)
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0xE06EF6, map: THREE.ImageUtils.loadTexture( 'images/column17'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0xE06EF6 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
+
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-420 + 1020, 300 - (i) * 57, -400);
 		scene.add(mesh[i]);
 	}
+
 	//참고
-	for (var i = 1; i < 7; i++) {
+	/*for (var i = 1; i < 7; i++) {
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-420, 300 - i * 57, -400);
 
 		scene.add(mesh[i]);
-	}
+	}*/
 
 	/****************** row 0 *********************/
 	var mesh = [15];
 	var geometry = new THREE.CubeGeometry(50, 50, 10);
 
-	//light green material
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x63FF00, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
-
 	for (var i = 0; i <= 14; i++) {
+		//light green material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0x63FF00, map: THREE.ImageUtils.loadTexture( 'images/row0'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x63FF00 }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-300+(i*60), 300 -(8* 57), -400);
@@ -931,18 +1035,17 @@ function init()
 	var mesh = [15];
 	var geometry = new THREE.CubeGeometry(50, 50, 10);
 
-	//dark green material
-	var materialArray = [];
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
-	materialArray.push(new THREE.MeshPhongMaterial( { color: 0x02780A, map: THREE.ImageUtils.loadTexture( 'images/PeriodicTableBW.png' ) }));
-	materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
-
-	var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
-
 	for (var i = 0; i <= 14; i++) {
+		//dark green material
+		var materialArray = [];
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+		materialArray.push(new THREE.MeshPhongMaterial( { color: 0x02780A, map: THREE.ImageUtils.loadTexture( 'images/row1'+i+'.png' ) }));
+		materialArray.push(new THREE.MeshBasicMaterial( { color: 0x02780A }));
+
+		var material = new THREE.MeshFaceMaterial(materialArray); //unified in one object
 		var geometry = new THREE.CubeGeometry(50, 50, 10);
 		mesh[i] = new THREE.Mesh(geometry, material);
 		mesh[i].position.set(-300+(i*60), 300 -(9* 57), -400);
@@ -950,26 +1053,7 @@ function init()
 		scene.add(mesh[i]);
 	}
 
-	// keyboard 'a'
-	/*
-	var materialFront = new THREE.MeshBasicMaterial( { color: 0xfdff00 } ); //white
-	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
-	var materialArray = [ materialFront, materialSide ];
-	var textGeom = new THREE.TextGeometry( "Press 'a' to look left",
-			{
-				size: 20, height: 4, curveSegments: 3,
-				font: "optimer", weight: "normal", style: "normal",
-				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
-				material: 0, extrudeMaterial: 1
-			});
-	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
-	var textMesh = new THREE.Mesh(textGeom, textMaterial );
-	textGeom.computeBoundingBox();
-	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
 
-	textMesh.position.set( 540, -300, -400 );
-	scene.add(textMesh);
-*/
 	// keyboard 'd'
 	/*
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xfdff00 } ); //white
@@ -1147,7 +1231,7 @@ function init()
 	shape3.position.y = 80;
 	pivot1.add( shape3 );
 
-	// (Li)add 3D text: "Element of Hydrogen"
+	// (H)add 3D text: "Element of Hydrogen"
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -1168,7 +1252,7 @@ function init()
 	textMesh.position.set( 10100, 100, -400 );
 	scene.add(textMesh);
 
-	// (Li)add 3D text - Information(symbol)
+	// (H)add 3D text - Information(symbol)
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -1187,7 +1271,7 @@ function init()
 	textMesh.position.set( 10100, 50, -400 );
 	scene.add(textMesh);
 
-	// (Li)add 3D text - Information(mess)
+	// (H)add 3D text - Information(mess)
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -1208,7 +1292,7 @@ function init()
 	textMesh.position.set( 10100, 30, -400 );
 	scene.add(textMesh);
 
-	// (Li)add 3D text - Information(melting point)
+	// (H)add 3D text - Information(melting point)
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -1230,7 +1314,7 @@ function init()
 	textMesh.position.set( 10100, 10, -400 );
 	scene.add(textMesh);
 
-	// (Li)add 3D text - Information(boling point)
+	// (H)add 3D text - Information(boling point)
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -1251,7 +1335,7 @@ function init()
 	textMesh.position.set( 10100, -10, -400 );
 	scene.add(textMesh);
 
-	// (Li)add 3D text - Information(melting point)
+	// (H)add 3D text - Information(number)
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -1269,7 +1353,7 @@ function init()
 	textMesh.position.set( 10100, -30, -400 );
 	scene.add(textMesh);
 
-	// (Li)add 3D text - Information(melting point)
+	// (H)add 3D text - Information(number)
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -1289,14 +1373,14 @@ function init()
 	textMesh.position.set( 10100, -50, -400 );
 	scene.add(textMesh);
 
-	//(Li) shapes info(protons)
+	//(H)shapes info(protons)
 	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var protonInfo = new THREE.Mesh(geom, darkMaterial);
 	protonInfo.position.set(10100, -200, -400);
 	scene.add( protonInfo );
 
-	// (Li)add 3D text - "protons"
+	// (H)add 3D text - "protons"
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -1315,14 +1399,14 @@ function init()
 	textMesh.position.set( 10110, -200, -400 );
 	scene.add(textMesh);
 
-	//(Li)shape info(Atoms)
+	//(H)shape info(Atoms)
 	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xec0ed7} ); //pink
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var protonInfo = new THREE.Mesh(geom, darkMaterial);
 	protonInfo.position.set(10100, -240, -400);
 	scene.add( protonInfo );
 
-	// (Li)add 3D text - "Atom"
+	// (H)add 3D text - "Atom"
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -1370,6 +1454,7 @@ function init()
 		wireframe: true
 	} );*/
 
+
 	// parent
 	parentH = new THREE.Object3D();
 	parentH.position.set(10000 , 10, 10);
@@ -1377,7 +1462,7 @@ function init()
 
 	// pivots
 	var pivot1 = new THREE.Object3D();
-	pivot1.rotation.z = 0;
+	//pivot1.rotation.z = 10;
 	parentH.add( pivot1 );
 	/********************** (H) is done ***************************/
 
@@ -1471,6 +1556,7 @@ function init()
 	pivot1.add( atom1 );
 	pivot2.add( atom2 );
 	pivot3.add( atom3 );
+
 
 	// (Li)add 3D text: "Element of Lithium"
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
@@ -1714,6 +1800,440 @@ function init()
 
 	/********************** (Li) is done ***************************/
 
+	/*********************** (Na) skybox starts from here ***************************/
+	var imagePrefix = "images/";
+	var directions  = ["moondust-xpos", "moondust-xneg", "moondust-ypos",
+		"moondust-yneg", "moondust-zpos", "moondust-zneg"];
+	var imageSuffix = ".png";
+	var skyGeometry = new THREE.CubeGeometry( 4000, 4000, 4000 );
+	var materialArray = [];
+
+	for (var i = 0; i < 6; i++)
+		materialArray.push( new THREE.MeshBasicMaterial({
+			map: THREE.ImageUtils.loadTexture( imagePrefix + directions[i] + imageSuffix ),
+			side: THREE.BackSide
+		}));
+
+	var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
+	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+	skyBox.position.set(25000, 0, 0);
+	scene.add( skyBox );
+
+	// (Na)spheres
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xe9fafb, transparent: true, opacity: 0.2 } ); //crystal
+	var geom = new THREE.SphereGeometry(50, 70, 70);
+	var shape1 = new THREE.Mesh(geom, darkMaterial);
+	shape1.position.set(25000, 0, 0);
+	scene.add( shape1 );
+
+	// (Na)proton 1
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25000, 0 + 10, 0);
+	scene.add( shape2 );
+
+	// (Na)proton 2
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25000 - 10, 0, 0);
+	scene.add( shape2 );
+
+	// (Na)proton 3
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25010, 0, 0);
+	scene.add( shape2 );
+
+	// (Na)proton 4
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25000, -10, 0);
+	scene.add( shape2 );
+
+	// (Na)proton 5
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(24990, 20, 0);
+	scene.add( shape2 );
+
+	// (Na)proton 6
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25010, 20, 0);
+	scene.add( shape2 );
+
+	// (Na)proton 7
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25020, 10, 0);
+	scene.add( shape2 );
+
+    // (Na)proton 8
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(24980, 0, 0);
+	scene.add( shape2 );
+
+	// (Na)proton 9
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(24980, 20, 0);
+	scene.add( shape2 );
+
+	// (Na)proton 10
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(24980, -10, 0);
+	scene.add( shape2 );
+
+	// (Na)proton 11
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25010, -20, 0);
+	scene.add( shape2 );
+
+	// (Na)neutron 1
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25000, 0, 0);
+	scene.add( shape2 );
+
+	// (Na)neutron 2
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25010, 10, 0);
+	scene.add( shape2 );
+
+	// (Na)neutron 3
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25010, -10, 0);
+	scene.add( shape2 );
+
+	// (Na)neutron 4
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(24990, -10, 0);
+	scene.add( shape2 );
+
+	// (Na)neutron 5
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(24990, 10, 0);
+	scene.add( shape2 );
+
+	// (Na)neutron 6
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25000, 20, 0);
+	scene.add( shape2 );
+
+	// (Na)neutron 7
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25020, 0, 0);
+	scene.add( shape2 );
+
+	// (Na)neutron 8
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(24980, 10, 0);
+	scene.add( shape2 );
+
+
+	// (Na)neutron 9
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25020, -10, 0);
+	scene.add( shape2 );
+
+	// (Na)neutron 10
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(25000, -20, 0);
+	scene.add( shape2 );
+
+    // (Na)neutron 11
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(24990, -20, 0);
+	scene.add( shape2 );
+
+	// (Na)neutron 12
+	darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(24980, -20, 0);
+	scene.add( shape2 );
+
+	// Atoms
+
+
+
+
+	// (Na)add 3D text: "Element of Sodium"
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeomTitle = new THREE.TextGeometry( "ELEMENT OF SODIUM",
+			{
+				size: 20, height: 4, curveSegments: 3,
+				font: "helvetiker", weight: "bold", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeomTitle, textMaterial );
+
+	textGeomTitle.computeBoundingBox();
+	var textWidth = textGeomTitle.boundingBox.max.x - textGeomTitle.boundingBox.min.x;
+
+	textMesh.position.set( 25100, 100, -400 );
+	scene.add(textMesh);
+
+	// (Na)add 3D text - Information(symbol)
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Symbol: Na",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 25100, 50, -400 );
+	scene.add(textMesh);
+
+	// (Na)add 3D text - Information(mess)
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Atomic Mass: 6.941 amu",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 25100, 30, -400 );
+	scene.add(textMesh);
+
+	// (Na)add 3D text - Information(melting point)
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Melting Point: 180.54 °C (453.69 K, 356.972 °F)",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+
+
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 25100, 10, -400 );
+	scene.add(textMesh);
+
+	// (Na)add 3D text - Information(boling point)
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Boiling Point: 1347.0 °C (1620.15 K, 2456.6 °F)",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 25100, -10, -400 );
+	scene.add(textMesh);
+
+	// (Na)add 3D text - Information(melting point)
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Number of Protons/Electrons: 3",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+	textMesh.position.set( 25100, -30, -400 );
+	scene.add(textMesh);
+
+	// (Na)add 3D text - Information(number of Neutrons)
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Number of Neutrons: 4",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 25100, -50, -400 );
+	scene.add(textMesh);
+
+	//(Na) shapes info(protons)
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var protonInfo = new THREE.Mesh(geom, darkMaterial);
+	protonInfo.position.set(25100, -200, -400);
+	scene.add( protonInfo );
+
+	// (Na)add 3D text - "protons"
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( ": Proton",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 25110, -200, -400 );
+	scene.add(textMesh);
+
+	//(Na)shape info(Neutrons)
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var protonInfo = new THREE.Mesh(geom, darkMaterial);
+	protonInfo.position.set(25100, -220, -400);
+	scene.add( protonInfo );
+
+	// (Na)add 3D text - "Neutron"
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( ": Neutron",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 25110, -220, -400 );
+	scene.add(textMesh);
+
+	//(Na)shape info(Atoms)
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xec0ed7} ); //pink
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var protonInfo = new THREE.Mesh(geom, darkMaterial);
+	protonInfo.position.set(25100, -240, -400);
+	scene.add( protonInfo );
+
+	// (Na)add 3D text - "Atom"
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( ": Atom",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 25110, -240, -400 );
+	scene.add(textMesh);
+
+
+	// How to get out
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xfdff00 } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( "Press 'z' to go back to the table.",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 25300, -400, -400 );
+	scene.add(textMesh);
+	/*************************(Na) is done **********************************/
+
 
 	// movingCube
 	var material = new THREE.MeshPhongMaterial( {color: 0xffff00 });
@@ -1759,6 +2279,8 @@ function animate()
 	parent.children[1].rotation.z += 0.01;
 	parent.children[2].rotation.z += 0.02;
 	parentH.rotation.z += 0.03;
+
+
 }
 
 function update()
@@ -1840,6 +2362,14 @@ function update()
 			MovingCube.position.set(20000 , 0, 1000);
 			MovingCube.rotation.set(0,0,0);
 		}
+
+		// (Na)
+		var collisionResults = ray.intersectObject( collidableMeshList[2] );
+		if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
+		{
+			MovingCube.position.set(25000 , 0, 1000);
+			MovingCube.rotation.set(0,0,0);
+		}
 	}
 
 	stats.update();
@@ -1848,6 +2378,7 @@ function update()
 function render()
 {
 	renderer.render( scene, camera );
+
 }
 
 </script>
