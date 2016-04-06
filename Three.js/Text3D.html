@@ -82,7 +82,9 @@ void main()
 	var shape3;
 	var parent;
 	var parentH;
-	var parentNa;
+	var parentNA;
+	var parentB;
+	var parentHe;
 	var android;
 	init();
 	animate();
@@ -181,6 +183,15 @@ void main()
 		// light in B skybox
 		var light = new THREE.PointLight(0xffffff, 1, 10000);
 		light.position.set(30000,250,-1000);
+		scene.add(light);
+
+		// light in He skybox
+		var light = new THREE.PointLight(0xffffff, 1, 10000);
+		light.position.set(35000,250,1000);
+		scene.add(light);
+		// light in He skybox
+		var light = new THREE.PointLight(0xffffff, 1, 10000);
+		light.position.set(35000,250,-1000);
 		scene.add(light);
 
 		/****************** main skybox *********************/
@@ -1059,7 +1070,7 @@ void main()
 		scene.add( protonInfo );
 		// (H)add 3D text - "Atom"
 
-		var textGeom = new THREE.TextGeometry( ": Atom",
+		var textGeom = new THREE.TextGeometry( ": Electron",
 				{
 					size: 15, height: 4, curveSegments: 3,
 					font: "optimer", weight: "normal", style: "normal",
@@ -1322,7 +1333,7 @@ void main()
 		scene.add( protonInfo );
 		// (Li)add 3D text - "Atom"
 
-		var textGeom = new THREE.TextGeometry( ": Atom",
+		var textGeom = new THREE.TextGeometry( ": Electron",
 				{
 					size: 15, height: 4, curveSegments: 3,
 					font: "optimer", weight: "normal", style: "normal",
@@ -1490,6 +1501,63 @@ void main()
 		var shape2 = new THREE.Mesh(geom, darkMaterial);
 		shape2.position.set(24980, -20, 0);
 		scene.add( shape2 );
+
+		// (Li)Atoms
+		var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xec0ed7} ); //pink
+		var geom = new THREE.SphereGeometry(5, 100, 100);
+
+		var electron1 = new THREE.Mesh(geom, darkMaterial);
+		var electron2  = new THREE.Mesh(geom, darkMaterial);
+		var electron3  = new THREE.Mesh(geom, darkMaterial);
+		var electron4 = new THREE.Mesh(geom, darkMaterial);
+		var electron5  = new THREE.Mesh(geom, darkMaterial);
+		var electron6  = new THREE.Mesh(geom, darkMaterial);
+		var electron7 = new THREE.Mesh(geom, darkMaterial);
+		var electron8  = new THREE.Mesh(geom, darkMaterial);
+		var electron9  = new THREE.Mesh(geom, darkMaterial);
+		var electron10 = new THREE.Mesh(geom, darkMaterial);
+		var electron11  = new THREE.Mesh(geom, darkMaterial);
+		var electron12  = new THREE.Mesh(geom, darkMaterial);
+
+		var pivot1 = new THREE.Object3D();
+		var pivot2 = new THREE.Object3D();
+		var pivot3 = new THREE.Object3D();
+		var pivot4 = new THREE.Object3D();
+		var pivot5 = new THREE.Object3D();
+		var pivot6 = new THREE.Object3D();
+		var pivot7 = new THREE.Object3D();
+		var pivot8 = new THREE.Object3D();
+		var pivot9 = new THREE.Object3D();
+		var pivot10 = new THREE.Object3D();
+		var pivot11 = new THREE.Object3D();
+		var pivot12 = new THREE.Object3D();
+
+		electron1.position.y = 80;
+		electron2.position.y = 80;
+		electron3.position.y = 120;
+		electron4.position.y = 120;
+		electron5.position.y = 120;
+		electron6.position.y = 120;
+		electron7.position.y = 120;
+		electron8.position.y = 120;
+		electron9.position.y = 120;
+		electron10.position.y = 120;
+		electron11.position.y = 120;
+		electron12.position.y = 160;
+
+		pivot1.add( electron1 );
+		pivot2.add( electron2 );
+		pivot3.add( electron3 );
+		pivot4.add( electron4 );
+		pivot5.add( electron5 );
+		pivot6.add( electron6 );
+		pivot7.add( electron7 );
+		pivot8.add( electron8 );
+		pivot9.add( electron9 );
+		pivot10.add( electron10 );
+		pivot11.add( electron11 );
+		pivot12.add( electron12 );
+
 		// Atoms
 		// (Na)add 3D text: "Element of Sodium"
 
@@ -1646,7 +1714,7 @@ void main()
 		scene.add( protonInfo );
 		// (Na)add 3D text - "Atom"
 
-		var textGeom = new THREE.TextGeometry( ": Atom",
+		var textGeom = new THREE.TextGeometry( ": Electron",
 				{
 					size: 15, height: 4, curveSegments: 3,
 					font: "optimer", weight: "normal", style: "normal",
@@ -1674,6 +1742,40 @@ void main()
 		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
 		textMesh.position.set( 25300, -400, -400 );
 		scene.add(textMesh);
+
+		// parent nucleus
+		parentNA = new THREE.Object3D();
+		parentNA.position.set(25000 , 10, 10);
+		scene.add( parentNA );
+		// pivots
+		var pivot1 = new THREE.Object3D();
+
+		pivot1.rotation.z = Math.PI / 2;
+		pivot2.rotation.z = 3 * Math.PI / 2;
+		pivot3.rotation.z = 5 * Math.PI / 3;
+		pivot4.rotation.z = 4 * Math.PI / 3;
+		pivot5.rotation.z = Math.PI / 3;
+		pivot6.rotation.z = 2 * Math.PI / 3;
+		pivot7.rotation.z = 5 * Math.PI / 6;
+		pivot8.rotation.z = 7 * Math.PI / 6;
+		pivot9.rotation.z = Math.PI / 6;
+		pivot10.rotation.z = 11 * Math.PI / 6;
+		pivot11.rotation.z = Math.PI;
+		pivot12.rotation.z = Math.PI / 2;
+
+
+		parentNA.add( pivot1 );
+		parentNA.add( pivot2 );
+		parentNA.add( pivot3 );
+		parentNA.add( pivot4 );
+		parentNA.add( pivot5 );
+		parentNA.add( pivot6 );
+		parentNA.add( pivot7 );
+		parentNA.add( pivot8 );
+		parentNA.add( pivot9 );
+		parentNA.add( pivot10 );
+		parentNA.add( pivot11 );
+		parentNA.add( pivot12 );
 		/*************************(Na) is done **********************************/
 
 
@@ -1948,7 +2050,7 @@ void main()
 		scene.add( protonInfo );
 		// (B)add 3D text - "Atom"
 
-		var textGeom = new THREE.TextGeometry( ": Atom",
+		var textGeom = new THREE.TextGeometry( ": Electron",
 				{
 					size: 15, height: 4, curveSegments: 3,
 					font: "optimer", weight: "normal", style: "normal",
@@ -1977,6 +2079,7 @@ void main()
 		textMesh.position.set( 30300, -400, -400 );
 		scene.add(textMesh);
 		/*************************(B) is done **********************************/
+
 		/*************************(He) skybox starts here **********************************/
 		var imagePrefix = "images/";
 		var directions  = ["nebula-xpos", "nebula-xneg", "nebula-ypos",
@@ -1999,8 +2102,220 @@ void main()
 		var shape1 = new THREE.Mesh(geom, darkMaterial);
 		shape1.position.set(35000, 0, 0);
 		scene.add( shape1 );
+		// (He)proton1
+		var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+		var geom = new THREE.SphereGeometry(5, 100, 100);
+		var shape2 = new THREE.Mesh(geom, darkMaterial);
+		shape2.position.set(35000, 0, 0);
+		scene.add( shape2 );
+		// (He)proton2
+		var shape2 = new THREE.Mesh(geom, darkMaterial);
+		shape2.position.set(35000, 10, 0);
+		scene.add( shape2 );
+		// (He)neutron1
+		var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+		var shape2 = new THREE.Mesh(geom, darkMaterial);
+		shape2.position.set(35010, 0, 0);
+		scene.add( shape2 );
+		// (He)neutron2
+		var shape2 = new THREE.Mesh(geom, darkMaterial);
+		shape2.position.set(35010, 10, 0);
+		scene.add( shape2 );
+		// Atom
+		// (He)add 3D text: "Element of Helium"
 
+		var textGeomTitle = new THREE.TextGeometry( "ELEMENT OF HELIUM",
+				{
+					size: 20, height: 4, curveSegments: 3,
+					font: "helvetiker", weight: "bold", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+
+		var textMesh = new THREE.Mesh(textGeomTitle, textMaterial );
+		textGeomTitle.computeBoundingBox();
+		var textWidth = textGeomTitle.boundingBox.max.x - textGeomTitle.boundingBox.min.x;
+		textMesh.position.set( 35100, 100, -400 );
+		scene.add(textMesh);
+		// (He)add 3D text - Information(symbol)
+		var textGeom = new THREE.TextGeometry( "Symbol: He",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35100, 50, -400 );
+		scene.add(textMesh);
+		// (He)add 3D text - Information(number)
+		var textGeom = new THREE.TextGeometry( "Atomic Number: 2",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35100, 30, -400 );
+		scene.add(textMesh);
+		// (He)add 3D text - Information(mess)
+		var textGeom = new THREE.TextGeometry( "Atomic Mass: 4.002602 amu ",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35100, 10, -400 );
+		scene.add(textMesh);
+		// (He)add 3D text - Information(melting point)
+		var textGeom = new THREE.TextGeometry( "Melting Point: -272.0 °C (1.15 K, -457.6 °F)",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35100, -10, -400 );
+		scene.add(textMesh);
+		// (He)add 3D text - Information(number)
+		var textGeom = new THREE.TextGeometry( "Boiling Point: -268.6 °C (4.549994 K, -451.48 °F)",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35100, -30, -400 );
+		scene.add(textMesh);
+		// (He)add 3D text - Information(number)
+		var textGeom = new THREE.TextGeometry( "Number of Protons/Electrons: 2",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35100, -50, -400 );
+		scene.add(textMesh);
+		// (He)add 3D text - Information(number)
+		var textGeom = new THREE.TextGeometry( "Number of Neutrons: 2",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35100, -70, -400 );
+		scene.add(textMesh);
+		// (He)add 3D text - Information(number)
+		var textGeom = new THREE.TextGeometry( "Density @ 293 K: 0.1785 g/cm3",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35100, -90, -400 );
+		scene.add(textMesh);
+		//(He)shapes info(protons)
+		var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+		var geom = new THREE.SphereGeometry(5, 100, 100);
+		var protonInfo = new THREE.Mesh(geom, darkMaterial);
+		protonInfo.position.set(35100, -200, -400);
+		scene.add( protonInfo );
+		// (He)add 3D text - "protons"
+		var textGeom = new THREE.TextGeometry( ": Proton",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35110, -200, -400 );
+		scene.add(textMesh);
+		//(He)shape info(Neutrons)
+		var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+		var geom = new THREE.SphereGeometry(5, 100, 100);
+		var protonInfo = new THREE.Mesh(geom, darkMaterial);
+		protonInfo.position.set(35100, -220, -400);
+		scene.add( protonInfo );
+
+		// (He)add 3D text - "Neutron"
+		var textGeom = new THREE.TextGeometry( ": Neutron",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35110, -220, -400 );
+		scene.add(textMesh);
+		//(He)shape info(Atoms)
+		var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xec0ed7} ); //pink
+		var geom = new THREE.SphereGeometry(5, 100, 100);
+		var protonInfo = new THREE.Mesh(geom, darkMaterial);
+		protonInfo.position.set(35100, -240, -400);
+		scene.add( protonInfo );
+		// (He)add 3D text - "Atom"
+		var textGeom = new THREE.TextGeometry( ": Electron",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35110, -240, -400 );
+		scene.add(textMesh);
+		// How to get out
+		var textGeom = new THREE.TextGeometry( "Press 'z' to go back to the table.",
+				{
+					size: 15, height: 4, curveSegments: 3,
+					font: "optimer", weight: "normal", style: "normal",
+					bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+					material: 0, extrudeMaterial: 1
+				});
+		var textMesh = new THREE.Mesh(textGeom, textMaterial );
+		textGeom.computeBoundingBox();
+		var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+		textMesh.position.set( 35300, -400, -400 );
+		scene.add(textMesh);
 		/*************************(He) is done **********************************/
+
+
 		// movingCube
 		var material = new THREE.MeshPhongMaterial( {color: 0xffff00 });
 		var MovingCubeGeom = new THREE.SphereGeometry( 5, 32, 32);
@@ -2038,6 +2353,20 @@ void main()
 		parent.children[1].rotation.z += 0.01;
 		parent.children[2].rotation.z += 0.02;
 		parentH.rotation.z += 0.03;
+
+		parentNA.children[0].rotation.z += 0.01;
+		parentNA.children[1].rotation.z += 0.01;
+		parentNA.children[2].rotation.z += 0.02;
+		parentNA.children[3].rotation.z += 0.02;
+		parentNA.children[4].rotation.z += 0.02;
+		parentNA.children[5].rotation.z += 0.02;
+		parentNA.children[6].rotation.z += 0.02;
+		parentNA.children[7].rotation.z += 0.02;
+		parentNA.children[8].rotation.z += 0.02;
+		parentNA.children[9].rotation.z += 0.02;
+		parentNA.children[10].rotation.z += 0.02;
+		parentNA.children[11].rotation.z += 0.03;
+
 	}
 	function update()
 	{
