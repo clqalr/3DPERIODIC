@@ -1837,18 +1837,21 @@ void main()
 		var shape2 = new THREE.Mesh(geom, darkMaterial);
 		shape2.position.set(30010, 0, 0);
 		scene.add( shape2 );
-		// (B)neutron2
 
+		var darkMaterial2 = new THREE.MeshPhongMaterial( { color: 0xec0ed7} ); //pink
+		var geom2 = new THREE.SphereGeometry(5, 100, 100);
+
+		// (B)neutron2
 		var shape2 = new THREE.Mesh(geom, darkMaterial);
 		shape2.position.set(30010, 20, 0);
 		scene.add( shape2 );
-		// (B)neutron3
 
+		// (B)neutron3
 		var shape2 = new THREE.Mesh(geom, darkMaterial);
 		shape2.position.set(30000, 20, 0);
 		scene.add( shape2 );
-		// (B)neutron4
 
+		// (B)neutron4
 		var shape2 = new THREE.Mesh(geom, darkMaterial);
 		shape2.position.set(29990, 20, 0);
 		scene.add( shape2 );
@@ -1864,11 +1867,11 @@ void main()
 		scene.add( shape2 );
 
 
-		var electron1 = new THREE.Mesh(geom, darkMaterial);
-		var electron2  = new THREE.Mesh(geom, darkMaterial);
-		var electron3  = new THREE.Mesh(geom, darkMaterial);
-		var electron4 = new THREE.Mesh(geom, darkMaterial);
-		var electron5  = new THREE.Mesh(geom, darkMaterial);
+		var electron1 = new THREE.Mesh(geom2, darkMaterial2);
+		var electron2  = new THREE.Mesh(geom2, darkMaterial2);
+		var electron3  = new THREE.Mesh(geom2, darkMaterial2);
+		var electron4 = new THREE.Mesh(geom2, darkMaterial2);
+		var electron5  = new THREE.Mesh(geom2, darkMaterial2);
 
 
 		var pivot1 = new THREE.Object3D();
