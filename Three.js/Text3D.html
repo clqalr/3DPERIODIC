@@ -2559,6 +2559,29 @@ function init()
 	shape2.position.set(35000, 0, 0);
 	scene.add( shape2 );
 
+	// (B)proton2
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(35010, -10, 0);
+	scene.add( shape2 );
+
+
+	// (B)neutron1
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(35010, 0, 0);
+	scene.add( shape2 );
+
+	// (B)neutron2
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(35000, -10, 0);
+	scene.add( shape2 );
+
+
 
 
 	/*************************(He) is done **********************************/
