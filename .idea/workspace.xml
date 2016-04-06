@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="132c6f28-07d7-4164-a623-4e068969d64e" name="Default" comment="he done">
+    <list default="true" id="132c6f28-07d7-4164-a623-4e068969d64e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="4793abc5-0382-436c-84e3-f3d700f9ab36" name="New changelist" comment="" />
@@ -337,7 +337,13 @@
       <option name="project" value="LOCAL" />
       <updated>1459926209608</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="he done">
+      <created>1459926593265</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1459926593265</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -390,7 +396,8 @@
     <MESSAGE value=".." />
     <MESSAGE value="working on He" />
     <MESSAGE value="working?" />
-    <option name="LAST_COMMIT_MESSAGE" value="working?" />
+    <MESSAGE value="he done" />
+    <option name="LAST_COMMIT_MESSAGE" value="he done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
