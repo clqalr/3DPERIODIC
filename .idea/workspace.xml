@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="132c6f28-07d7-4164-a623-4e068969d64e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Three.js/images/bit.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Three.js/images/jay.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="4793abc5-0382-436c-84e3-f3d700f9ab36" name="New changelist" comment="" />
@@ -29,8 +27,8 @@
       <file leaf-file-name="Text3D.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Three.js/Text3D.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38549075">
-              <caret line="2275" column="5" selection-start-line="2275" selection-start-column="5" selection-end-line="2275" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.25320056">
+              <caret line="2247" column="19" selection-start-line="2247" selection-start-column="19" selection-end-line="2247" selection-end-column="19" />
               <folding>
                 <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -351,7 +349,13 @@
       <option name="project" value="LOCAL" />
       <updated>1459926608465</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="he done">
+      <created>1459926670838</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1459926670838</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -774,8 +778,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Three.js/Text3D.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38549075">
-          <caret line="2275" column="5" selection-start-line="2275" selection-start-column="5" selection-end-line="2275" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.25320056">
+          <caret line="2247" column="19" selection-start-line="2247" selection-start-column="19" selection-end-line="2247" selection-end-column="19" />
           <folding>
             <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
