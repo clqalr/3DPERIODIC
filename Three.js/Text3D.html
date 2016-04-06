@@ -1011,15 +1011,8 @@ function init()
 		mesh[i].position.set(-420 + 1020, 300 - (i) * 57, -400);
 		scene.add(mesh[i]);
 	}
+	collidableMeshList.push(mesh[0]);
 
-	//참고
-	/*for (var i = 1; i < 7; i++) {
-		var geometry = new THREE.CubeGeometry(50, 50, 10);
-		mesh[i] = new THREE.Mesh(geometry, material);
-		mesh[i].position.set(-420, 300 - i * 57, -400);
-
-		scene.add(mesh[i]);
-	}*/
 
 	/****************** row 0 *********************/
 	var mesh = [15];
@@ -2530,9 +2523,45 @@ function init()
 
 
 
-
-
 	/*************************(B) is done **********************************/
+
+	/*************************(He) skybox starts here **********************************/
+	var imagePrefix = "images/";
+	var directions  = ["nebula-xpos", "nebula-xneg", "nebula-ypos",
+		"nebula-yneg", "nebula-zpos", "nebula-zneg"];
+	var imageSuffix = ".png";
+	var skyGeometry = new THREE.CubeGeometry( 4000, 4000, 4000 );
+	var materialArray = [];
+
+	for (var i = 0; i < 6; i++)
+		materialArray.push( new THREE.MeshBasicMaterial({
+			map: THREE.ImageUtils.loadTexture( imagePrefix + directions[i] + imageSuffix ),
+			side: THREE.BackSide
+		}));
+
+	var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
+	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+	skyBox.position.set(35000, 0, 0);
+	scene.add( skyBox );
+
+
+	// (B)spheres
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xe9fafb, transparent: true, opacity: 0.2 } ); //crystal
+	var geom = new THREE.SphereGeometry(50, 70, 70);
+	var shape1 = new THREE.Mesh(geom, darkMaterial);
+	shape1.position.set(35000, 0, 0);
+	scene.add( shape1 );
+
+	// (B)proton1
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(35000, 0, 0);
+	scene.add( shape2 );
+
+
+
+	/*************************(He) is done **********************************/
 
 	// movingCube
 	var material = new THREE.MeshPhongMaterial( {color: 0xffff00 });
@@ -2676,6 +2705,14 @@ function update()
 		if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
 		{
 			MovingCube.position.set(30000 , 0, 1000);
+			MovingCube.rotation.set(0,0,0);
+		}
+
+		// (He)
+		var collisionResults = ray.intersectObject( collidableMeshList[4] );
+		if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() )
+		{
+			MovingCube.position.set(35000 , 0, 1000);
 			MovingCube.rotation.set(0,0,0);
 		}
 	}
