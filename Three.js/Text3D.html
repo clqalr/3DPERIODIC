@@ -159,6 +159,16 @@ void main()
 		var light = new THREE.PointLight(0xffffff, 1, 10000);
 		light.position.set(30000,250,-1000);
 		scene.add(light);
+		// light in He skybox
+		var light = new THREE.PointLight(0xffffff, 1, 10000);
+		light.position.set(35000,250,1000);
+		scene.add(light);
+		// light in He skybox
+		var light = new THREE.PointLight(0xffffff, 1, 10000);
+		light.position.set(35000,250,-1000);
+		scene.add(light);
+
+
 		/****************** main skybox *********************/
 		var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 		var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
