@@ -1066,106 +1066,6 @@ function init()
 	}
 
 
-	// keyboard 'd'
-	/*
-	var materialFront = new THREE.MeshBasicMaterial( { color: 0xfdff00 } ); //white
-	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
-	var materialArray = [ materialFront, materialSide ];
-	var textGeom = new THREE.TextGeometry( "Press 'd' to look right",
-			{
-				size: 20, height: 4, curveSegments: 3,
-				font: "optimer", weight: "normal", style: "normal",
-				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
-				material: 0, extrudeMaterial: 1
-			});
-	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
-	var textMesh = new THREE.Mesh(textGeom, textMaterial );
-	textGeom.computeBoundingBox();
-	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
-
-	textMesh.position.set( 540, -330, -400 );
-	scene.add(textMesh);
-*/
-	// keyboard 'w'
-/*	var materialFront = new THREE.MeshBasicMaterial( { color: 0xfdff00 } ); //white
-	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
-	var materialArray = [ materialFront, materialSide ];
-	var textGeom = new THREE.TextGeometry( "Press 'w' to go forward",
-			{
-				size: 20, height: 4, curveSegments: 3,
-				font: "optimer", weight: "normal", style: "normal",
-				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
-				material: 0, extrudeMaterial: 1
-			});
-	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
-	var textMesh = new THREE.Mesh(textGeom, textMaterial );
-	textGeom.computeBoundingBox();
-	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
-
-	textMesh.position.set( 540, -360, -400 );
-	scene.add(textMesh);
-*/
-	// keyboard 's'
-/*
-	var materialFront = new THREE.MeshBasicMaterial( { color: 0xfdff00 } ); //white
-	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
-	var materialArray = [ materialFront, materialSide ];
-	var textGeom = new THREE.TextGeometry( "Press 's' to back off",
-			{
-				size: 20, height: 4, curveSegments: 3,
-				font: "optimer", weight: "normal", style: "normal",
-				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
-				material: 0, extrudeMaterial: 1
-			});
-	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
-	var textMesh = new THREE.Mesh(textGeom, textMaterial );
-	textGeom.computeBoundingBox();
-	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
-
-	textMesh.position.set( 540, -390, -400 );
-	scene.add(textMesh);
-*/
-	// keyboard 'q'
-/*	var materialFront = new THREE.MeshBasicMaterial( { color: 0xfdff00 } ); //white
-	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
-	var materialArray = [ materialFront, materialSide ];
-	var textGeom = new THREE.TextGeometry( "Press 'q' to move left",
-			{
-				size: 20, height: 4, curveSegments: 3,
-				font: "optimer", weight: "normal", style: "normal",
-				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
-				material: 0, extrudeMaterial: 1
-			});
-	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
-	var textMesh = new THREE.Mesh(textGeom, textMaterial );
-	textGeom.computeBoundingBox();
-	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
-
-	textMesh.position.set( 540, -420, -400 );
-	scene.add(textMesh);
-*/
-	// keyboard 'q'
-/*	var materialFront = new THREE.MeshBasicMaterial( { color: 0xfdff00 } ); //white
-	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
-	var materialArray = [ materialFront, materialSide ];
-	var textGeom = new THREE.TextGeometry( "Press 'e' to move right",
-			{
-				size: 20, height: 4, curveSegments: 3,
-				font: "optimer", weight: "normal", style: "normal",
-				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
-				material: 0, extrudeMaterial: 1
-			});
-	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
-	var textMesh = new THREE.Mesh(textGeom, textMaterial );
-	textGeom.computeBoundingBox();
-	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
-
-	textMesh.position.set( 540, -450, -400 );
-	scene.add(textMesh);
-*/
-
-
-
 	/************************* teleport *****************************/
 
 	// main skybox
@@ -2264,18 +2164,81 @@ function init()
 	shape1.position.set(30000, 0, 0);
 	scene.add( shape1 );
 
-	// (B)protons
+	// (B)proton1
 	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var shape2 = new THREE.Mesh(geom, darkMaterial);
 	shape2.position.set(30000, 0, 0);
 	scene.add( shape2 );
 
-	// (B)neutrons
+	// (B)proton2
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(30000, 10, 0);
+	scene.add( shape2 );
+
+	// (B)proton3
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(30010, 10, 0);
+	scene.add( shape2 );
+
+	// (B)proton4
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(29990, 10, 0);
+	scene.add( shape2 );
+
+	// (B)proton5
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xcc0000} ); //red
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(29990, 0, 0);
+	scene.add( shape2 );
+
+	// (B)neutron1
 	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var shape2 = new THREE.Mesh(geom, darkMaterial);
-	shape2.position.set(30000 + 10, 0, 0);
+	shape2.position.set(30010, 0, 0);
+	scene.add( shape2 );
+
+	// (B)neutron2
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(30010, 20, 0);
+	scene.add( shape2 );
+
+	// (B)neutron3
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(30000, 20, 0);
+	scene.add( shape2 );
+
+	// (B)neutron4
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(29990, 20, 0);
+	scene.add( shape2 );
+
+	// (B)neutron5
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(29990, -10, 0);
+	scene.add( shape2 );
+
+	// (B)neutron6
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var shape2 = new THREE.Mesh(geom, darkMaterial);
+	shape2.position.set(30000, -10, 0);
 	scene.add( shape2 );
 
 	//(B)Atom
@@ -2307,7 +2270,7 @@ function init()
 	textMesh.position.set( 30100, 100, -400 );
 	scene.add(textMesh);
 
-	// (H)add 3D text - Information(symbol)
+	// (B)add 3D text - Information(symbol)
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -2390,7 +2353,7 @@ function init()
 	textMesh.position.set( 30100, -10, -400 );
 	scene.add(textMesh);
 
-	// (H)add 3D text - Information(number)
+	// (B)add 3D text - Information(number)
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -2494,14 +2457,40 @@ function init()
 	textMesh.position.set( 30110, -200, -400 );
 	scene.add(textMesh);
 
-	//(H)shape info(Atoms)
+	//(Li)shape info(Neutrons)
+	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
+	var geom = new THREE.SphereGeometry(5, 100, 100);
+	var protonInfo = new THREE.Mesh(geom, darkMaterial);
+	protonInfo.position.set(30100, -220, -400);
+	scene.add( protonInfo );
+
+	// (Li)add 3D text - "Neutron"
+	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
+	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
+	var materialArray = [ materialFront, materialSide ];
+	var textGeom = new THREE.TextGeometry( ": Neutron",
+			{
+				size: 15, height: 4, curveSegments: 3,
+				font: "optimer", weight: "normal", style: "normal",
+				bevelThickness: 1, bevelSize: 1, bevelEnabled: true	,
+				material: 0, extrudeMaterial: 1
+			});
+	var textMaterial = new THREE.MeshFaceMaterial(materialArray);
+	var textMesh = new THREE.Mesh(textGeom, textMaterial );
+	textGeom.computeBoundingBox();
+	var textWidth = textGeom.boundingBox.max.x - textGeom.boundingBox.min.x;
+
+	textMesh.position.set( 30110, -220, -400 );
+	scene.add(textMesh);
+
+	//(B)shape info(Atoms)
 	var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xec0ed7} ); //pink
 	var geom = new THREE.SphereGeometry(5, 100, 100);
 	var protonInfo = new THREE.Mesh(geom, darkMaterial);
 	protonInfo.position.set(30100, -240, -400);
 	scene.add( protonInfo );
 
-	// (H)add 3D text - "Atom"
+	// (B)add 3D text - "Atom"
 	var materialFront = new THREE.MeshBasicMaterial( { color: 0xffffff } ); //white
 	var materialSide = new THREE.MeshBasicMaterial( { color: 0x000000 } ); //black
 	var materialArray = [ materialFront, materialSide ];
@@ -2539,15 +2528,10 @@ function init()
 	textMesh.position.set( 30300, -400, -400 );
 	scene.add(textMesh);
 
-	// parent
-	parentH = new THREE.Object3D();
-	parentH.position.set(30000 , 10, 10);
-	scene.add( parentH );
 
-	// pivots
-	var pivot1 = new THREE.Object3D();
-	//pivot1.rotation.z = 10;
-	parentH.add( pivot1 );
+
+
+
 	/*************************(B) is done **********************************/
 
 	// movingCube
@@ -2559,28 +2543,29 @@ function init()
 
 
 	// EVENTS.
-	window.addEventListener('resize', onWindowResize, false);
-	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+	//window.addEventListener('resize', onWindowResize, false);
+	//document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 }
 
 
-function onWindowResize(event) {
+
+/*function onWindowResize(event) {
 	WIDTH  = window.innerWidth;
 	HEIGHT = window.innerHeight;
 	renderer.setSize(WIDTH, HEIGHT);
 	camera.aspect = WIDTH / HEIGHT;
 	camera.updateProjectionMatrix();
 }
-function onDocumentMouseDown( event ) {
-	event.preventDefault();
-	lookAround = true;
-	cameraControls.center.copy( player.position );
-	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-}
-function onDocumentMouseUp( event ) {
-	lookAround = false;
-	document.removeEventListener( 'mouseup', onDocumentMouseUp );
-}
+	function onDocumentMouseDown( event ) {
+		event.preventDefault();
+		lookAround = true;
+		cameraControls.center.copy( player.position );
+		document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+	}
+	function onDocumentMouseUp( event ) {
+		lookAround = false;
+		document.removeEventListener( 'mouseup', onDocumentMouseUp );
+	}*/
 
 var MovingCube;
 
