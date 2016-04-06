@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="132c6f28-07d7-4164-a623-4e068969d64e" name="Default" comment="">
+    <list default="true" id="132c6f28-07d7-4164-a623-4e068969d64e" name="Default" comment="he done">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="4793abc5-0382-436c-84e3-f3d700f9ab36" name="New changelist" comment="" />
@@ -27,19 +27,12 @@
       <file leaf-file-name="Text3D.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Three.js/Text3D.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38058552">
-              <caret line="2266" column="51" selection-start-line="2266" selection-start-column="51" selection-end-line="2266" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.53485066">
+              <caret line="2282" column="35" selection-start-line="2282" selection-start-column="35" selection-end-line="2282" selection-end-column="35" />
               <folding>
                 <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="down-A.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Three.js/images/down-A.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
@@ -121,24 +114,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Three.js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="3DPERIODIC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="3DPERIODIC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Three.js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -356,7 +331,13 @@
       <option name="project" value="LOCAL" />
       <updated>1459926085055</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="working?">
+      <created>1459926209608</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1459926209608</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -776,19 +757,19 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Three.js/images/down-A.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Three.js/Text3D.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38058552">
-          <caret line="2266" column="51" selection-start-line="2266" selection-start-column="51" selection-end-line="2266" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.53485066">
+          <caret line="2282" column="35" selection-start-line="2282" selection-start-column="35" selection-end-line="2282" selection-end-column="35" />
           <folding>
             <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Three.js/images/down-A.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
       </provider>
     </entry>
   </component>
