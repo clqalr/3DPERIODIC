@@ -2262,7 +2262,6 @@ void main()
 		scene.add(textMesh);
 		//(He)shape info(Neutrons)
 		var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFF00} ); //yellow
-		var geom = new THREE.SphereGeometry(5, 100, 100);
 		var protonInfo = new THREE.Mesh(geom, darkMaterial);
 		protonInfo.position.set(35100, -220, -400);
 		scene.add( protonInfo );
@@ -2283,7 +2282,6 @@ void main()
 		scene.add(textMesh);
 		//(He)shape info(Atoms)
 		var darkMaterial = new THREE.MeshPhongMaterial( { color: 0xec0ed7} ); //pink
-		var geom = new THREE.SphereGeometry(5, 100, 100);
 		var protonInfo = new THREE.Mesh(geom, darkMaterial);
 		protonInfo.position.set(35100, -240, -400);
 		scene.add( protonInfo );
